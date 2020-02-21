@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap" rel="stylesheet">
+    <title>GiphWarts</title>
+</head>
+<body>
+    <div class="upper-bar">
+        <h4>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: <span id="visit-count"></span></h4>
+    </div>
+    <div class="wrapper">
+        <!-- SECTION TOOL BAR -->
+        <nav class="tool-bar">
+            <div class="logo">
+                <a href=""><img src="" alt="Logo"></a>
+            </div>
+            <div class="gif-options">
+                <button class="btn"></button>
+                <button class="btn"></button>
+                <select class="btn" name="themes" id="theme-select">
+                    <option value="t1" class="theme1"></option>
+                    <option value="t2" class="theme2"></option>
+                </select>
+                <a href="">Mis Gifos</a>
+            </div>
+        </nav>
+        <!-- SECTION SEARCH -->
+        <section class="search">
+            <header class="top-header">Buscar</header>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
+                <button class="btn" id="button-search" type="submit">&#x1F50D; Buscar</button>
+            </div>
+        </section>
+
+        <!-- SECTION MAIN -->
+        <section class="top-container">
+            <div class="suggest"></div>
+            <div class="gifs">
+
+            </div>
+        </section>
+    </div>
+</body>
+</html>
