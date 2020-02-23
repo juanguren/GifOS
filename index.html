@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap" rel="stylesheet">
-    <title>GiphWarts</title>
+    <title>GifWarts</title>
 </head>
 <body>
     <div class="upper-bar">
@@ -15,14 +15,15 @@
         <!-- SECTION TOOL BAR -->
         <nav class="tool-bar">
             <div class="logo">
-                <a href=""><img src="" alt="Logo"></a>
+                <a href=""><img src="assets/gifOF_logo.png" alt="Logo"></a>
             </div>
             <div class="gif-options">
-                <button class="btn"></button>
-                <button class="btn"></button>
-                <select class="btn" name="themes" id="theme-select">
-                    <option value="t1" class="theme1"></option>
-                    <option value="t2" class="theme2"></option>
+                <button class="btn btn-active">Crear Guifos</button>
+                <button class="btn btn-active">Elegir Tema</button>
+                <select class="btn btn-active" name="themes" id="theme-select">
+                    <option disabled selected value></option>
+                    <option value="t1" class="theme1">Tema 1</option>
+                    <option value="t2" class="theme2">Tema 2</option>
                 </select>
                 <a href="">Mis Gifos</a>
             </div>
@@ -32,7 +33,7 @@
             <header class="top-header">Buscar</header>
             <div class="search-box">
                 <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
-                <button class="btn" id="button-search" type="submit">&#x1F50D; Buscar</button>
+                <button class="btn btn-inactive" id="button-search" type="submit">&#x1F50D; Buscar</button>
             </div>
         </section>
 
