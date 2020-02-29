@@ -1,5 +1,5 @@
 
-html{
+*{
     box-sizing: border-box;
     padding: 0px;
     border: 0;
@@ -52,7 +52,7 @@ html{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
-    "logo logo logo options";
+    "logo options";
 }
 
 .tool-bar .logo{
@@ -64,12 +64,23 @@ html{
     grid-template-columns: repeat(4, 1fr); 
     gap: 0px;
     grid-area: options;
-    align-self: flex-end;
-    justify-items: end;
+    align-self: end;
 }
 
 .tool-bar .gif-options button{
     padding: .5rem 30px;
+}
+
+.gif-options a{
+    text-align: end;
+}
+
+.gif-options select{
+    justify-self: end;
+}
+
+.gif-options button{
+    justify-self: end;
 }
 
 #theme-select{
@@ -86,7 +97,7 @@ html{
 }
 
 .search .top-header{
-    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%); 
     
 }
 
@@ -96,13 +107,37 @@ html{
     justify-content: space-around;
 }
 
-.search #search-input{
+#search-input{
     flex-basis: 85%;
+    padding: 1rem;
 }
 
-.search #button-search{
+#button-search{
     flex-basis: 10%;
 }
+
+/* SECTION MAIN */
+
+.top-container{
+    margin-top: 3rem;
+}
+
+.top-container .rectangle-one{
+    background: #FFFAFE;
+    border: 1px solid #E6BBE2;
+    box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+    width: 100%;
+    padding: .5rem;
+}
+
+.top-container .rectangle-one h5{
+    color: var(--fontColor);
+    font-family: var(--fontRegular);
+    letter-spacing: 0;
+    font-size: 14px;
+}
+
+
 
 /* SECTION  MEDIA QUERIES */
 
