@@ -77,6 +77,11 @@
 
 .gif-options button{
     padding: .5rem 30px;
+    height: 45%;
+}
+
+.gif-options .create-gif{
+    
 }
 
 .gif-options a{
@@ -93,6 +98,15 @@
 
 #theme-select{
     width: 20px;
+}
+
+.dropdown-content{
+    margin-top: .5rem;
+}
+
+.dropdown-content a{
+    display: flex;
+    justify-content: center;
 }
 
 /* SECTION SEARCH */
