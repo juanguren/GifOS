@@ -62,11 +62,11 @@
     "logo options";
 }
 
-.tool-bar .logo{
+.logo{
     grid-area: logo;
 }
 
-.tool-bar .gif-options{
+.gif-options{
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     grid-area: options;
@@ -75,7 +75,7 @@
     gap: .5rem;
 }
 
-.tool-bar .gif-options button{
+.gif-options button{
     padding: .5rem 30px;
 }
 
