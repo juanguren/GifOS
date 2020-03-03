@@ -68,10 +68,11 @@
 
 .tool-bar .gif-options{
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 0px;
+    grid-template-columns: repeat(3, 1fr); 
     grid-area: options;
     align-self: end;
+    justify-self: end;  
+    gap: .5rem;
 }
 
 .tool-bar .gif-options button{
