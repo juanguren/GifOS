@@ -39,6 +39,12 @@
     margin: 50px 50px;
 }
 
+/* SECTION Appendable classes */
+
+.not-show {display: none;}
+
+.show{display: block;}
+
 /* SECTION UPPER BAR */
 
 .upper-bar{
@@ -67,21 +73,16 @@
 }
 
 .gif-options{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    display: flex;
     grid-area: options;
     align-self: end;
     justify-self: end;  
-    gap: .5rem;
 }
 
 .gif-options button{
     padding: .5rem 30px;
-    height: 45%;
-}
-
-.gif-options .create-gif{
-    
+    height: fit-content;
+    margin: 0 .5em;
 }
 
 .gif-options a{
@@ -102,11 +103,14 @@
 
 .dropdown-content{
     margin-top: .5rem;
+    position: absolute;
+    width: auto;
+    z-index: 5;
+    background: #F7C9F3;
 }
 
 .dropdown-content a{
     display: flex;
-    justify-content: center;
 }
 
 /* SECTION SEARCH */
@@ -120,7 +124,6 @@
 
 .top-header{
     background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%); 
-    
 }
 
 .top-header h4{
@@ -144,6 +147,10 @@
 
 #button-search{
     flex-basis: 10%;
+}
+
+#button-search img{
+    margin-right: 10px;
 }
 
 /* SECTION MAIN - GIF suggestion */
