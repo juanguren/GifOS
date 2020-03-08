@@ -39,11 +39,31 @@
     margin: 50px 50px;
 }
 
+.rectangle-subtitle{
+    background: #FFFAFE;
+    border: 1px solid #E6BBE2;
+    box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+    width: 100%;
+    padding: .5rem;
+}
+
+.rectangle-subtitle h5{
+    color: var(--fontColor);
+    font-family: var(--fontRegular);
+    letter-spacing: 0;
+    font-size: 14px;
+}
+
 /* SECTION Appendable classes */
 
 .not-show {display: none;}
 
 .show{display: block;}
+
+.gif-size{
+    width: 100%;
+    height: 200px;
+}
 
 /* SECTION UPPER BAR */
 
@@ -81,7 +101,6 @@
 
 .gif-options button{
     padding: .5rem 30px;
-    height: fit-content;
     margin: 0 .5em;
 }
 
@@ -104,7 +123,6 @@
 .dropdown-content{
     margin-top: .5rem;
     position: absolute;
-    width: auto;
     z-index: 5;
     background: #F7C9F3;
 }
@@ -159,20 +177,9 @@
     margin-top: 3rem;
 }
 
-.top-container .rectangle-one{
-    background: #FFFAFE;
-    border: 1px solid #E6BBE2;
-    box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
-    width: 100%;
-    padding: .5rem;
-}
+/* rectangle-subtitle{} */
 
-.top-container .rectangle-one h5{
-    color: var(--fontColor);
-    font-family: var(--fontRegular);
-    letter-spacing: 0;
-    font-size: 14px;
-}
+/* rectangle-subtitle h5 {} */
 
 .gif-suggestion{
     margin-top: 1.5rem;
@@ -189,7 +196,7 @@
     "gif-title button"
     "gif gif";
 }
-
+/* FIXME : Width and height go to the appendable classes section */
 #gif-image1, #gif-image2, #gif-image3, #gif-image4{
     background-image: none;
     grid-area: gif;
@@ -207,7 +214,32 @@
     grid-area: button;
 }
 
+/* SECTION MAIN | GIF trends */
 
+/* rectangle-subtitle{} */
+
+/* rectangle-subtitle h5 {} */
+
+.gif-trends{
+    margin-top: 1em;
+    border: solid 1.5px crimson;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: auto;
+}
+
+.gif-span1{ /* TODO Possible appendable class */
+    grid-column-start: span 2;
+}
+
+.gif-span2{ /* TODO Possible appendable class */
+    grid-column: 3 / span 2;
+}
+
+.gif-trends > img{
+    border: solid 2px black;
+    background-color: aquamarine;
+}
 
 
 /* MEDIA QUERIES SECTION */
