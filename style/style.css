@@ -99,6 +99,10 @@
     justify-self: end;  
 }
 
+.gif-options span{
+    text-decoration: underline solid #110038;
+}
+
 .gif-options button{
     padding: .5rem 30px;
     margin: 0 .5em;
