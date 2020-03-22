@@ -200,8 +200,19 @@
 
 #gif-button{
     position: absolute;
-    top: 85%;
+    top: 80%;
     left: 3%;
+    background: #4180F6;
+    border: 1px solid #4C2F99;
+    box-shadow: inset -2px -2px 0 0 #284F99, inset 2px 2px 0 0 #FFFFFF;
+    font-family: var(--fontRegular);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 18px;
+    padding: 5px 15px;
+    cursor: pointer;
 }
 
 /* FIXME : Width and height go to the appendable classes section */
@@ -220,6 +231,7 @@
     justify-self: end;
     margin-right: 3px;
     grid-area: button;
+    cursor: pointer;
 }
 
 /* SECTION MAIN | GIF trends */
