@@ -243,34 +243,6 @@
     cursor: pointer;
 }
 
-/* SECTION MAIN | GIF trends */
-
-/* rectangle-subtitle{} */
-
-/* rectangle-subtitle h5 {} */
-
-.gif-trends{
-    margin-top: 1em;
-    border: solid 1.5px crimson;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: auto;
-}
-
-.gif-span1{ /* TODO Possible appendable class */
-    grid-column-start: span 2;
-}
-
-.gif-span2{ /* TODO Possible appendable class */
-    grid-column: 3 / span 2;
-}
-
-.gif-trends > img{
-    border: solid 2px black;
-    background-color: aquamarine;
-}
-
-
 /* MEDIA QUERIES SECTION */
 
 @media(min-width:1200px){
