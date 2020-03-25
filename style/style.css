@@ -169,6 +169,7 @@
 
 #button-search{
     flex-basis: 10%;
+    cursor: pointer;
 }
 
 #button-search img{
@@ -193,6 +194,7 @@
     width: 84%;
     position: relative;
     left: 12px;
+    cursor: pointer;
 }
 
 .search-toggle button{
