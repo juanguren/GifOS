@@ -1,14 +1,10 @@
 
 // Instatiating DOM elements
 
-// SECTION TOOL BAR
+// NOTE TOOL BAR
 let btnCreate = document.querySelector("#create-gif");
 let btnTheme = document.querySelector("#choose-theme");
 let toggleMenu = document.querySelector(".dropdown-content");
-
-// SECTION SEARCH
-let searchBar = document.querySelector("#search-input");
-
 
 // Event for "Crear GIFS" (btnCreate)
 btnCreate.addEventListener("click", createGif);
@@ -27,16 +23,31 @@ function chooseTheme() {
     }
 }
 
-/* NOTE Events for GIF search */
+// NOTE SEARCH 
+let searchBar = document.querySelector("#search-input");
+let toggleBar = document.querySelector(".search-toggle");
 
-// Toggle search menu
+/* SECTION Events for GIF search toggle */
+
+window.addEventListener("mouseup", (e) =>{
+    if (e.target != toggleBar && e.target.parentNode != toggleBar) {
+        toggleBar.style.display = "none";
+        searchToggleStatus = false;
+    }
+})
+
 searchBar.addEventListener("click", searchClicked);
 
+let searchToggleStatus = false; 
+
 function searchClicked(e) {
-    console.log(1);
+    if (!searchToggleStatus) {
+        toggleBar.style.display = "block";
+        searchToggleStatus = true;
+    } 
 }
 
-// GIF search 
+// SECTION GIF search 
 searchBar.addEventListener("keyup", gifSearch);
 
 function gifSearch(e) {
