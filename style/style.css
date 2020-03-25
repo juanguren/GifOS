@@ -184,10 +184,6 @@
     padding: 1em;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 65.5%; /* se que es una solución chambona */
-    width: 88.3%;
-    z-index: 100;
     display: none;
 }
 
