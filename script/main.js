@@ -1,6 +1,4 @@
 
-// Instatiating DOM elements
-
 // NOTE TOOL BAR
 let btnCreate = document.querySelector("#create-gif");
 let btnTheme = document.querySelector("#choose-theme");
@@ -23,11 +21,15 @@ function chooseTheme() {
     }
 }
 
+
+
 // NOTE SEARCH 
 let searchBar = document.querySelector("#search-input");
 let toggleBar = document.querySelector(".search-toggle");
 
 /* SECTION Events for GIF search toggle */
+
+let searchToggleStatus = false; 
 
 window.addEventListener("mouseup", (e) =>{
     if (e.target != toggleBar && e.target.parentNode != toggleBar) {
@@ -37,8 +39,6 @@ window.addEventListener("mouseup", (e) =>{
 })
 
 searchBar.addEventListener("click", searchClicked);
-
-let searchToggleStatus = false; 
 
 function searchClicked(e) {
     if (!searchToggleStatus) {
