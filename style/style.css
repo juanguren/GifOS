@@ -128,12 +128,13 @@
     width: fit-content;
 }
 
-#theme-dropdown{
+#theme-dropdown{ /* TODO Fix the width that comes with absolute positioning element */
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     padding: .5em;
     display: flex;
     flex-direction: column;
+    position: absolute;
 }
 
 #theme-dropdown button{
