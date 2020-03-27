@@ -1,22 +1,7 @@
 
 // NOTE TOOL BAR
 let btnCreate = document.querySelector("#create-gif");
-let btnTheme = document.querySelector("#choose-theme");
 let toggleMenu = document.querySelector(".dropdown-content");
-
-// Event for "Crear GIFS" (btnCreate)
-btnCreate.addEventListener("click", createGif);
-
-function createGif() {
-    console.log("1 clicked");
-}
-
-// Event for "Elegir Tema" (btnTheme & toggleMenu)
-btnTheme.addEventListener("click", chooseTheme);
-
-function chooseTheme() {    
-    
-}
 
 // NOTE SEARCH 
 let searchBar = document.querySelector("#search-input");
