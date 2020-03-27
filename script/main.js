@@ -13,12 +13,9 @@ function createGif() {
 
 // Event for "Elegir Tema" (btnTheme & toggleMenu)
 btnTheme.addEventListener("click", chooseTheme);
-toggleMenu.classList.add("not-show");
 
 function chooseTheme() {    
-    if (toggleMenu.classList.contains("not-show")) {
-        toggleMenu.classList.toggle("show");
-    }
+    
 }
 
 // NOTE SEARCH 
