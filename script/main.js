@@ -1,7 +1,25 @@
 
-// NOTE TOOL BAR
-let btnCreate = document.querySelector("#create-gif");
-let toggleMenu = document.querySelector(".dropdown-content");
+// SECTION TOOL BAR EVENTS
+
+// Theme Options
+let btnThemes = document.querySelector("#btn-choose-theme");
+let themes = document.querySelector("#theme-dropdown");
+
+btnThemes.addEventListener("click", clickToggle);
+
+let btnThemesClicked = false;
+
+function clickToggle(e) {
+    if (!btnThemesClicked) {
+        themes.classList.replace("inactive", "active");
+        btnThemesClicked = true;
+    } else{
+        themes.classList.replace("active", "inactive");
+        btnThemesClicked = false;
+    }
+}
+
+
 
 // NOTE SEARCH 
 let searchBar = document.querySelector("#search-input");

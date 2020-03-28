@@ -132,9 +132,19 @@
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     padding: .5em;
-    display: flex;
     flex-direction: column;
     position: absolute;
+}
+
+.inactive{
+    opacity: 0;
+}
+
+.active{
+    display: block;
+    display: flex;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
 }
 
 #theme-dropdown button{
