@@ -41,13 +41,14 @@ function dayChange() {
 }
 
 
-// NOTE SEARCH 
+// SECTION Search Bar
+
 let searchBar = document.querySelector("#search-input");
 let toggleBar = document.querySelector(".search-toggle");
 let btnSearch = document.querySelector("#button-search");
 let glassIcon = document.querySelector("#lens-img");
 
-/* SECTION Events for GIF search toggle */
+// This boolean helps identify the search toogle status for display purposes
 let searchToggleStatus = false; 
 
 window.addEventListener("mouseup", (e) =>{
