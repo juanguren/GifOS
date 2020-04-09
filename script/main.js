@@ -39,6 +39,7 @@ function nightChange() {
     newStyle.rel = "stylesheet";
     newStyle.href = "modular/dark-mode/style.css";
     document.body.appendChild(newStyle);
+    themeNight.classList.add("btnTheme-night");
 }
 
 themeDay.addEventListener("click", dayChange);
