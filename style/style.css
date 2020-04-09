@@ -100,7 +100,7 @@
 }
 
 .gif-options span{
-    text-decoration: underline solid #110038;
+    text-decoration: underline solid var(--fontColor);
 }
 
 .gif-options button{
@@ -110,6 +110,10 @@
 
 .gif-options a{
     text-align: end;
+}
+
+.gif-options a:hover{
+    border: 1px solid #110038;
 }
 
 .gif-options select{
@@ -158,13 +162,13 @@
     line-height: 22px;
 }
 
-#theme-active{ /* NOTE Appendable class */
+.theme-active{ /* NOTE Appendable class */
     background: #FFF4FD;
     border: 1px solid #CCA6C9;
     box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF;
 }
 
-#theme-inactive{ /* NOTE Appendable class */
+.theme-inactive{ /* NOTE Appendable class */
     background: #F0F0F0;
     border: 1px solid #808080;
     box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;

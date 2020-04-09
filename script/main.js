@@ -1,7 +1,7 @@
 
 // SECTION TOOL BAR EVENTS
 
-// Theme Options
+// Theme Toggle
 let btnThemes = document.querySelector("#btn-choose-theme");
 let themes = document.querySelector("#theme-dropdown");
 
@@ -19,6 +19,26 @@ function clickToggle(e) {
     }
 }
 
+// Theme Selection
+
+let themeDay = document.querySelector(".theme-day");
+let themeNight = document.querySelector(".theme-night");
+
+themeNight.addEventListener("click", nightChange);
+
+function nightChange() {
+    themeNight.classList.replace("theme-inactive", "theme-active");
+    if (themeDay.classList.contains("theme-active")) {
+        themeDay.classList.replace("theme-active", "theme-inactive");
+    }
+}
+
+themeDay.addEventListener("click", dayChange);
+
+function dayChange() {
+    themeDay.classList.replace("theme-inactive", "theme-active");
+    themeNight.classList.replace("theme-active", "theme-inactive");
+}
 
 
 // NOTE SEARCH 
