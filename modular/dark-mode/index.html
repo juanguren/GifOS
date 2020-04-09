@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link id = "style" rel="stylesheet" href="style/style.css">
     <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:400,700&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/310b85a7e0.js"></script>
     <title>GifWarts</title>
 </head>
 <body>
@@ -15,59 +16,90 @@
         <!-- SECTION TOOL BAR -->
         <nav class="tool-bar">
             <div class="logo">
-                <a href=""><img src="assets/gifOF_logo_dark.png" alt="Logo"></a>
+                <a href=""><img src="assets/gifOF_logo.png" alt="Logo"></a>
             </div>
             <div class="gif-options">
-                <button class="btn btn-dark">Crear Guifos</button>
-                <button class="btn btn-dark">Elegir Tema</button>
-                <select class="btn btn-dark" name="themes" id="theme-select">
-                    <option disabled selected value></option>
-                    <option value="t1" class="theme1">Tema 1</option>
-                    <option value="t2" class="theme2">Tema 2</option>
-                </select>
-                <a href="">Mis Gifos</a>
-            </div>
+                <button id="btn-create-gif" class="btn btn-active">Crear GIFS</button>
+                <div class="dropdown">
+                    <button id="btn-choose-theme" class="btn btn-active dropbtn">Elegir Tema
+                       <i class="fa fa-caret-down"></i>
+                    </button>
+                 <div id="theme-dropdown" class="inactive">
+                    <button class="theme-day theme-active" href="#">Sailor Day</button>
+                    <button class="theme-night theme-inactive" href="#">Sailor Night</button>
+                  </div>
+                </div>
+                <a href="#"><span>M</span>is Gifos</a>
+            </div> 
         </nav>
         <!-- SECTION SEARCH -->
         <section class="search">
             <div class="top-header">
                 <h4>Buscar</h4>
             </div>
-            <div class="search-box">
+            <form class="search-box">
                 <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
-                <button class="btn btn-inactive" id="button-search" type="submit">&#x1F50D; Buscar</button>
-            </div>
+                <button type="submit" class="btn btn-inactive" id="button-search" type="submit">
+                    <img id="lens-img" src="assets/lupa_inactive.svg" alt="Icono de lupa"> Buscar</button>
+                </form>
         </section>
-
+        <!-- Search toggle (start) -->
+        <aside class="search-toggle">
+            <button id="btnSuggest1">1</button>
+            <button id="btnSuggest2">2</button>
+            <button id="btnSuggest3">3</button>
+        </aside>
+        <!-- Search toggle (ends) -->
         <!-- SECTION MAIN | GIF suggestion -->
         <section class="top-container">
-            <div class="rectangle-one">
+            <div class="rectangle-subtitle">
                 <h5>Hoy te sugerimos:</h5>
             </div>
             <div class="gif-suggestion">
                 <div class="gif">
-                    <h5>text</h5>
+                    <h5 id="suggest-text"></h5>
                     <img src="assets/button3.svg" alt="close button" id="btn-close">
                     <img src="assets/mountain.jpg" alt="" id="gif-image1">
+                    <button id="gif-button">Ver mas</button>
                 </div>
                 <div class="gif">
-                    <h5>text</h5>
+                    <h5 id="suggest-text"></h5>
                     <img src="assets/button3.svg" alt="close button" id="btn-close">
                     <img src="assets/mountain.jpg" alt="" id="gif-image2">
+                    <button id="gif-button">Ver mas</button>
                 </div>
                 <div class="gif">
-                    <h5>text</h5>
+                    <h5 id="suggest-text"></h5>
                     <img src="assets/button3.svg" alt="close button" id="btn-close">
                     <img src="assets/mountain.jpg" alt="" id="gif-image3">
+                    <button id="gif-button">Ver mas</button>
                 </div>
                 <div class="gif">
-                    <h5>text</h5>
+                    <h5 id="suggest-text"></h5>
                     <img src="assets/button3.svg" alt="close button" id="btn-close">
                     <img src="assets/mountain.jpg" alt="" id="gif-image4">
-                    <img src="" alt="">
+                    <button id="gif-button">Ver mas</button>
                 </div>
             </div>
         </section>
+        <!-- SECTION MAIN | GIF trends -->
+        <section class="top-container">
+            <div class="rectangle-subtitle">
+                <h5>Tendencias:</h5>
+            </div>
+            <div class="gif-trends">
+                <img src="" alt="1">
+                <img src="" alt="2">
+                <img src="" alt="3">
+                <img src="" alt="4">
+               <div class="gif-span1" style="background-color: crimson; text-align: center;"> 
+                   <img src="" alt="5">  
+               </div>
+               <img src="" alt="6">
+               <img src="" alt="7">
+            </div>
+        </section>
     </div>
+<script src="script/main.js"></script>
 </body>
 </html>
