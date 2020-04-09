@@ -21,16 +21,24 @@ function clickToggle(e) {
 
 // Theme Selection
 
+// Buttons
 let themeDay = document.querySelector(".theme-day");
 let themeNight = document.querySelector(".theme-night");
+// Stylesheet
+let newStyle = document.createElement("link");
 
 themeNight.addEventListener("click", nightChange);
 
 function nightChange() {
+
     themeNight.classList.replace("theme-inactive", "theme-active");
     if (themeDay.classList.contains("theme-active")) {
         themeDay.classList.replace("theme-active", "theme-inactive");
     }
+
+    newStyle.rel = "stylesheet";
+    newStyle.href = "modular/dark-mode/style.css";
+    document.body.appendChild(newStyle);
 }
 
 themeDay.addEventListener("click", dayChange);
@@ -38,6 +46,8 @@ themeDay.addEventListener("click", dayChange);
 function dayChange() {
     themeDay.classList.replace("theme-inactive", "theme-active");
     themeNight.classList.replace("theme-active", "theme-inactive");
+
+    document.body.removeChild(newStyle);
 }
 
 
