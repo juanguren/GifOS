@@ -1,4 +1,14 @@
 
+/**
+ * TODO
+ *     1. THEMES
+ *          - The class "btn-active" can´t be on in day theme during normal reload
+ *          - Create conditionals for each button during the night theme:
+ *              ! Active
+ *              ! Normal
+ *              ! Hover  
+ */
+
 // SECTION TOOL BAR EVENTS
 
 // Theme Toggle
@@ -21,10 +31,21 @@ function clickToggle(e) {
 
 // Theme Selection
 
-// Buttons
+// NOTE This function changes various elements from the DOM, using classes from the night stylesheet.
+let documentNight = () =>{
+    let btnCreate = document.getElementById("btn-create-gif");
+
+    btnThemes.classList.add("btn-night");
+    btnCreate.classList.add("btn-night");
+}
+
+// Instantiating DOM elements
 let themeDay = document.querySelector(".theme-day");
 let themeNight = document.querySelector(".theme-night");
-// Stylesheet
+let logo = document.querySelector(".logo").firstElementChild.firstChild;
+let misGifos = document.querySelector(".gif-options").lastElementChild;
+
+// Creating element for appending the new stylesheet
 let newStyle = document.createElement("link");
 
 themeNight.addEventListener("click", nightChange);
@@ -35,11 +56,15 @@ function nightChange() {
     if (themeDay.classList.contains("theme-active")) {
         themeDay.classList.replace("theme-active", "theme-inactive");
     }
-
+    // Changing stylesheet to night
     newStyle.rel = "stylesheet";
-    newStyle.href = "modular/dark-mode/style.css";
+    newStyle.href = "../modular/dark-mode/style/style.css";
     document.body.appendChild(newStyle);
-    themeNight.classList.add("btnTheme-night");
+    themeNight.classList.add("btnTheme-night"); // Class found in the night stylesheet
+
+    misGifos.style.color = "white";
+    logo.setAttribute("src", "assets/gifOF_logo_dark.png");
+    documentNight();
 }
 
 themeDay.addEventListener("click", dayChange);
@@ -47,8 +72,11 @@ themeDay.addEventListener("click", dayChange);
 function dayChange() {
     themeDay.classList.replace("theme-inactive", "theme-active");
     themeNight.classList.replace("theme-active", "theme-inactive");
-
+    logo.src = "assets/gifOF_logo.png";
+    misGifos.style.color = "#110038";
+    // Removes night stylesheet from body
     document.body.removeChild(newStyle);
+
 }
 
 
