@@ -124,14 +124,6 @@
     justify-self: end;
 }
 
-#btn-create-gif{
-    height: fit-content;
-}
-
-#btn-choose-gif{
-    width: fit-content;
-}
-
 #theme-dropdown{ /* TODO Fix the width that comes with absolute positioning element */
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
