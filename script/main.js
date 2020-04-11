@@ -30,15 +30,15 @@ function clickToggle(e) {
 }
 
 // Theme Selection
-let btnsSuggest = document.querySelectorAll("#btnSuggest");
+let btnsSuggest = document.querySelectorAll("#btnSuggest"); // Nodelist of buttons overlapping suggested gifs
 // NOTE This function changes various elements from the DOM, using classes from the night stylesheet.
 let buttonsNight = () =>{
     let btnCreate = document.getElementById("btn-create-gif");
 
     btnThemes.classList.add("btn-night");
     btnCreate.classList.add("btn-night");
-    // Selecting the buttons overlapping suggested gifs
-    for(let i = 0; i<btnsSuggest.length; i++){
+    // Selecting the nodelist buttons
+    for(i in btnsSuggest){
         btnsSuggest[i].classList.replace("btnSuggestDay", "btnSuggestNight");
     }
 }
@@ -81,8 +81,8 @@ function dayChange() {
     // Removes night stylesheet from body
     document.body.removeChild(newStyle);
 
-    // Selecting the buttons overlapping suggested gifs
-    for(let i = 0; i<btnsSuggest.length; i++){
+    // Selecting the nodelist buttons
+    for(i in btnsSuggest){
         btnsSuggest[i].classList.replace("btnSuggestNight", "btnSuggestDay");
     }
 }
