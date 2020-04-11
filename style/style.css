@@ -267,13 +267,11 @@
     position: relative;
 }
 
-#gif-button{
+#btnSuggest{
     position: absolute;
     top: 80%;
     left: 3%;
-    background: #4180F6;
-    border: 1px solid #4C2F99;
-    box-shadow: inset -2px -2px 0 0 #284F99, inset 2px 2px 0 0 #FFFFFF;
+    cursor: pointer;
     font-family: var(--fontRegular);
     font-size: 14px;
     color: #FFFFFF;
@@ -281,7 +279,12 @@
     text-align: center;
     line-height: 18px;
     padding: 5px 15px;
-    cursor: pointer;
+}
+
+.btnSuggestDay{ /* NOTE Appendable class */
+    background: #4180F6;
+    border: 1px solid #4C2F99;
+    box-shadow: inset -2px -2px 0 0 #284F99, inset 2px 2px 0 0 #FFFFFF;
 }
 
 /* FIXME : Width and height go to the appendable classes section */

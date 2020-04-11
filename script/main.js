@@ -30,13 +30,17 @@ function clickToggle(e) {
 }
 
 // Theme Selection
-
+let btnsSuggest = document.querySelectorAll("#btnSuggest");
 // NOTE This function changes various elements from the DOM, using classes from the night stylesheet.
 let buttonsNight = () =>{
     let btnCreate = document.getElementById("btn-create-gif");
 
     btnThemes.classList.add("btn-night");
     btnCreate.classList.add("btn-night");
+    // Selecting the buttons overlapping suggested gifs
+    for(let i = 0; i<btnsSuggest.length; i++){
+        btnsSuggest[i].classList.replace("btnSuggestDay", "btnSuggestNight");
+    }
 }
 
 // Instantiating DOM elements
@@ -76,6 +80,11 @@ function dayChange() {
     misGifos.style.color = "#110038";
     // Removes night stylesheet from body
     document.body.removeChild(newStyle);
+
+    // Selecting the buttons overlapping suggested gifs
+    for(let i = 0; i<btnsSuggest.length; i++){
+        btnsSuggest[i].classList.replace("btnSuggestNight", "btnSuggestDay");
+    }
 }
 
 
