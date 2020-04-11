@@ -32,7 +32,7 @@ function clickToggle(e) {
 // Theme Selection
 
 // NOTE This function changes various elements from the DOM, using classes from the night stylesheet.
-let documentNight = () =>{
+let buttonsNight = () =>{
     let btnCreate = document.getElementById("btn-create-gif");
 
     btnThemes.classList.add("btn-night");
@@ -64,7 +64,7 @@ function nightChange() {
 
     misGifos.style.color = "white";
     logo.setAttribute("src", "assets/gifOF_logo_dark.png");
-    documentNight();
+    buttonsNight();
 }
 
 themeDay.addEventListener("click", dayChange);
@@ -76,7 +76,6 @@ function dayChange() {
     misGifos.style.color = "#110038";
     // Removes night stylesheet from body
     document.body.removeChild(newStyle);
-
 }
 
 
