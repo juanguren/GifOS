@@ -259,13 +259,25 @@
 }
 
 .gif{
-    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
     "gif-title button"
     "gif gif";
     position: relative;
+}
+
+.gifDay{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+}
+
+.gif h5{
+    grid-area: gif-title;
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin-left: 5px;
 }
 
 #btnSuggest{
@@ -295,15 +307,6 @@
     width: 100%;
     height: 200px;
     border: solid lightslategray 1px;
-}
-
-.gif h5{
-    grid-area: gif-title;
-    font-family: var(--fontBold);
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 0;
-    margin-left: 5px;
 }
 
 #btn-close{
