@@ -1,0 +1,22 @@
+
+.myGifs{
+    margin-top: 3rem;
+}
+
+.myGifs-title{
+    background: #FFFAFE;
+    border: 1px solid #E6BBE2;
+    box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+    padding: .5rem;
+}
+
+.myGifs-content{
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.gif-span1{ /* TODO Possible appendable class */
+    grid-column-start: span 2;
+}
