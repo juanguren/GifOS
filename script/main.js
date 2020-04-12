@@ -34,6 +34,7 @@ function clickToggle(e) {
 let btnsSuggest = document.querySelectorAll("#btnSuggest"); // Nodelist of buttons overlapping suggested gifs
 let topBar = document.getElementById("top-bar"); // Bar at the very top of the application
 let topHeader = document.getElementById("top-header");
+let suggestedGifs = document.querySelectorAll(".gif");
 
 // NOTE This function changes various elements from the DOM, the ones WITHOUT ANY ASSOCIATED EVENT. Using classes from the night stylesheet.
 let buttonsNight = () =>{
@@ -48,6 +49,10 @@ let buttonsNight = () =>{
 
     topBar.classList.replace("upperBar-day", "upperBar-night");
     topHeader.classList.replace("topHeader-day", "topHeader-night");
+    // Selecting the suggested gifs header
+    suggestedGifs.forEach((element) =>{
+        element.classList.replace("gifDay", "gifNight");
+    });
 }
 
 // Instantiating DOM elements
@@ -95,6 +100,11 @@ function dayChange() {
 
     topBar.classList.replace("upperBar-night", "upperBar-day");
     topHeader.classList.replace("topHeader-night", "topHeader-day");
+
+    // Selecting the suggested gifs header
+    suggestedGifs.forEach((element) =>{
+        element.classList.replace("gifNight", "gifDay");
+    });
 }
 
 
