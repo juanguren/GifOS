@@ -30,7 +30,10 @@ function clickToggle(e) {
 }
 
 // Theme Selection
+
 let btnsSuggest = document.querySelectorAll("#btnSuggest"); // Nodelist of buttons overlapping suggested gifs
+let topBar = document.getElementById("top-bar"); // Bar at the very top of the application
+
 // NOTE This function changes various elements from the DOM, using classes from the night stylesheet.
 let buttonsNight = () =>{
     let btnCreate = document.getElementById("btn-create-gif");
@@ -38,9 +41,11 @@ let buttonsNight = () =>{
     btnThemes.classList.add("btn-night");
     btnCreate.classList.add("btn-night");
     // Selecting the nodelist buttons
-    for(i in btnsSuggest){
-        btnsSuggest[i].classList.replace("btnSuggestDay", "btnSuggestNight");
-    }
+    btnsSuggest.forEach((button) =>{
+        button.classList.replace("btnSuggestDay", "btnSuggestNight");
+    });
+
+    topBar.classList.replace("upperBar-day", "upperBar-night");
 }
 
 // Instantiating DOM elements
@@ -82,9 +87,11 @@ function dayChange() {
     document.body.removeChild(newStyle);
 
     // Selecting the nodelist buttons
-    for(i in btnsSuggest){
-        btnsSuggest[i].classList.replace("btnSuggestNight", "btnSuggestDay");
-    }
+    btnsSuggest.forEach((button) =>{
+        button.classList.replace("btnSuggestNight", "btnSuggestDay");
+    });
+
+    topBar.classList.replace("upperBar-night", "upperBar-day");
 }
 
 
