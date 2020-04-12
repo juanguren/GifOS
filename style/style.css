@@ -308,7 +308,6 @@
 
 #btn-close{
     justify-self: end;
-    margin-right: 3px;
     grid-area: button;
     cursor: pointer;
 }
