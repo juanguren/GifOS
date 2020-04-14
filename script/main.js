@@ -152,3 +152,28 @@ searchBar.addEventListener("keyup", gifSearch);
 function gifSearch(e) {
     console.log(e.target.value);
 }
+
+// SECTION GIF SUGGESTION
+
+// Delete
+
+let deleteGif = document.querySelectorAll("#btn-close");
+deleteGif.forEach((btn) =>{
+    btn.addEventListener("click", (e) =>{
+        e.preventDefault();
+        console.log(e.target.id);
+    })
+})
+
+// Discover More
+
+// SECTION GIF TRENDS
+
+// Trend Hashtag Toggle
+
+let trendsToggle = document.querySelectorAll(".gif-trends img");
+trendsToggle.forEach((image) =>{
+    image.addEventListener("mouseover", () =>{
+        console.log("MOUSEOVER");
+    })
+})
