@@ -18,3 +18,5 @@ function clickToggle(e) {
         btnThemesClicked = false;
     }
 }
+
+// Theme Selection
