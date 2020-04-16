@@ -108,12 +108,15 @@ function dayChange() {
 }
 
 
-// SECTION Search Bar
+// SECTION Search
 
+
+
+let searchForm = document.querySelector(".search-box");
 let searchBar = document.querySelector("#search-input");
 let toggleBar = document.querySelector(".search-toggle");
 let btnSearch = document.querySelector("#button-search");
-let glassIcon = document.querySelector("#lens-img");
+let searchIcon = document.querySelector("#lens-img");
 
 // This boolean helps identify the search toogle status for display purposes
 let searchToggleStatus = false; 
@@ -125,7 +128,7 @@ window.addEventListener("mouseup", (e) =>{
         btnSearch.classList.remove("btn-active");
         btnSearch.classList.add("btn-inactive");
 
-        glassIcon.src = "assets/lupa_inactive.svg";
+        searchIcon.src = "assets/lupa_inactive.svg";
 
         searchToggleStatus = false;
     }
@@ -140,17 +143,41 @@ function searchClicked(e) {
         btnSearch.classList.remove("btn-inactive");
         btnSearch.classList.add("btn-active");
 
-        glassIcon.src = "assets/lupa.svg";
+        searchIcon.src = "assets/lupa.svg";
 
         searchToggleStatus = true;
     }     
 }
 
-// SECTION GIF search 
+//  GIPHYs API
+const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
+let searchResult = document.querySelectorAll("#gif-image");
+
 searchBar.addEventListener("keyup", gifSearch);
 
 function gifSearch(e) {
     console.log(e.target.value);
+}
+
+
+searchForm.addEventListener("submit", searchGIF);
+
+async function searchGIF(e) {
+    e.preventDefault();
+    let searchQuery = searchBar.value;
+    
+    let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=24&offset=0&rating=G&lang=en`);
+    let res = await data.json();
+    if (data.ok) {
+        console.log("Response is ok");
+    } else{
+        throw new Error("There was a response error. Maybe check the url being fetched");
+    }
+    if (searchQuery == "" || searchQuery == " ") {
+        console.log("NO SPACES");
+    } else{
+        console.log(res);
+    }
 }
 
 // SECTION GIF SUGGESTION
