@@ -1,9 +1,5 @@
 
-.container{
+body{
     display: grid;
-    grid-template-columns: auto auto auto;
-}
-
-.container img{
-    margin: auto;
+    place-items: center;
 }
