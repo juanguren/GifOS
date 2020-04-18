@@ -177,11 +177,12 @@ async function searchGIF(e) {
         const gifData = res.data;
         let resultArray = Array.from(searchResult);
         let titleArray = Array.from(gifTitles);
-        for(let i = 0; i<= 3; i++){ // TODO i<resultArray doesn´t work?
+        for(let i = 0; i<= 3; i++){
             let gifTitle = gifData[i].title;
             let gifImage = gifData[i].images.downsized_medium.url;
             resultArray[i].src = gifImage;
             resultArray[i].alt = gifTitle;
+            titleArray[i].innerText = gifTitle; // TODO Increase title span on grid
         }      
     }
 }
