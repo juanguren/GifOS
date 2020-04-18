@@ -147,9 +147,11 @@ function searchClicked(e) {
     }     
 }
 
-//  GIPHYs API
+//  NOTE GIPHYs API:
+
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 let searchResult = document.querySelectorAll("#gif-image");
+let gifTitles = document.querySelectorAll("#suggest-text");
 
 // Search Coincidences
 searchBar.addEventListener("keyup", gifSearch);
@@ -174,12 +176,12 @@ async function searchGIF(e) {
     } else{
         const gifData = res.data;
         let resultArray = Array.from(searchResult);
+        let titleArray = Array.from(gifTitles);
         for(let i = 0; i<= 3; i++){ // TODO i<resultArray doesn´t work?
             let gifTitle = gifData[i].title;
             let gifImage = gifData[i].images.downsized_medium.url;
             resultArray[i].src = gifImage;
             resultArray[i].alt = gifTitle;
-            
         }      
     }
 }
