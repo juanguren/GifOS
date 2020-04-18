@@ -110,8 +110,6 @@ function dayChange() {
 
 // SECTION Search
 
-
-
 let searchForm = document.querySelector(".search-box");
 let searchBar = document.querySelector("#search-input");
 let toggleBar = document.querySelector(".search-toggle");
@@ -153,32 +151,39 @@ function searchClicked(e) {
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 let searchResult = document.querySelectorAll("#gif-image");
 
+// Search Coincidences
 searchBar.addEventListener("keyup", gifSearch);
 
 function gifSearch(e) {
-    console.log(e.target.value);
+    //console.log(e.target.value);
 }
 
-
+// Search Results (4)
 searchForm.addEventListener("submit", searchGIF);
 
 async function searchGIF(e) {
     e.preventDefault();
     let searchQuery = searchBar.value;
     
-    let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=24&offset=0&rating=G&lang=en`);
+    let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
     let res = await data.json();
-    if (data.ok) {
-        console.log("Response is ok");
-    } else{
-        throw new Error("There was a response error. Maybe check the url being fetched");
-    }
+
+    data.ok ? console.log("Response is ok") : console.log("Response error. Maybe check the url being fetched");
     if (searchQuery == "" || searchQuery == " ") {
         console.log("NO SPACES");
     } else{
-        console.log(res);
+        const gifData = res.data;
+        let resultArray = Array.from(searchResult);
+        for(let i = 0; i<= 3; i++){ // TODO i<resultArray doesn´t work?
+            let gifTitle = gifData[i].title;
+            let gifImage = gifData[i].images.downsized_medium.url;
+            resultArray[i].src = gifImage;
+            resultArray[i].alt = gifTitle;
+            
+        }      
     }
 }
+
 
 // SECTION GIF SUGGESTION
 
