@@ -187,9 +187,6 @@ async function searchGIF(e) {
     }
 }
 
-
-// SECTION GIF SUGGESTION
-
 // Delete
 
 let deleteGif = document.querySelectorAll("#btn-close");
@@ -202,7 +199,29 @@ deleteGif.forEach((btn) =>{
 
 // Discover More
 
+
 // SECTION GIF TRENDS
+
+let gifTrendsDiv = document.querySelector(".gif-trends");
+
+//NOTE Giphy´s API
+
+async function getTrends(url){
+    let data = await fetch(url);
+    let response = await data.json();
+    if (data.ok) {
+        let trendResponse = response.data;
+        for(element in trendResponse){
+            let trendGif = trendResponse[element].images.downsized_medium.url;
+            let newGif = document.createElement("img");
+            newGif.src = trendGif;
+            //gifTrendsDiv.appendChild(newGif);
+        }
+    }
+}
+
+getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
+
 
 // Trend Hashtag Toggle
 
