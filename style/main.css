@@ -337,7 +337,10 @@
 }
 
 .gif-trends > img{
-    border: solid 2px black;
+    border: solid 1.5px black;
+}
+
+.trendGif{
     height: 200px;
     width: 100%;
 }
