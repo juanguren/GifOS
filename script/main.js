@@ -221,11 +221,14 @@ async function getTrends(url){
             gifTrendsDiv.appendChild(newGif);
             gifTrendsAll = document.querySelectorAll(".trendGif");
         }
+        let gifTrendsArray = Array.from(gifTrendsAll);
+        // How to make this 2 recurrent?
+        gifTrendsArray[4].classList.add("gif-span1");
+        gifTrendsArray[9].classList.add("gif-span2");
     }
-    console.log(gifTrendsDiv);
 }
 
-getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
+getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=18&rating=G`); 
 
 
 // Trend Hashtag Toggle
