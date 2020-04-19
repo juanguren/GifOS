@@ -215,9 +215,10 @@ async function getTrends(url){
             let trendGif = trendResponse[element].images.downsized_medium.url;
             let newGif = document.createElement("img");
             newGif.src = trendGif;
-            //gifTrendsDiv.appendChild(newGif);
+            gifTrendsDiv.appendChild(newGif);
         }
     }
+    console.log(gifTrendsDiv);
 }
 
 getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
