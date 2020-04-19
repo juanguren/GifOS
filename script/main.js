@@ -175,11 +175,12 @@ async function searchGIF(e) {
         console.log("NO SPACES");
     } else{
         const gifData = res.data;
+        console.log(gifData);
         let resultArray = Array.from(searchResult);
         let titleArray = Array.from(gifTitles);
         for(let i = 0; i<= 3; i++){
             let gifTitle = gifData[i].title;
-            let gifImage = gifData[i].images.downsized_medium.url;
+            let gifImage = gifData[i].images.fixed_height_downsampled.url;
             resultArray[i].src = gifImage;
             resultArray[i].alt = gifTitle;
             titleArray[i].innerText = gifTitle; // TODO Increase title span on grid
@@ -203,6 +204,7 @@ deleteGif.forEach((btn) =>{
 // SECTION GIF TRENDS
 
 let gifTrendsDiv = document.querySelector(".gif-trends");
+let gifTrendsAll = [];
 
 //NOTE Giphy´s API
 
@@ -212,10 +214,12 @@ async function getTrends(url){
     if (data.ok) {
         let trendResponse = response.data;
         for(element in trendResponse){
-            let trendGif = trendResponse[element].images.downsized_medium.url;
+            let trendGif = trendResponse[element].images.fixed_height_downsampled.url;
             let newGif = document.createElement("img");
             newGif.src = trendGif;
+            newGif.classList.add("trendGif");
             gifTrendsDiv.appendChild(newGif);
+            gifTrendsAll = document.querySelectorAll(".trendGif");
         }
     }
     console.log(gifTrendsDiv);
