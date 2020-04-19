@@ -326,20 +326,20 @@
     border: solid 1.5px crimson;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: auto;
 }
 
-.gif-span1{ /* TODO Possible appendable class */
+.gif-span1{ /* TODO Appendable class */
     grid-column-start: span 2;
 }
 
-.gif-span2{ /* TODO Possible appendable class */
+.gif-span2{ /* TODO Appendable class */
     grid-column: 3 / span 2;
 }
 
 .gif-trends > img{
     border: solid 2px black;
-    background-color: aquamarine;
+    height: 200px;
+    width: 100%;
 }
 
 
