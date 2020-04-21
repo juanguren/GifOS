@@ -153,11 +153,14 @@ const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 let searchResult = document.querySelectorAll("#gif-image");
 let gifTitles = document.querySelectorAll("#suggest-text");
 
-// Search Coincidences
+// Search Coincidences TODO
 searchBar.addEventListener("keyup", gifSearch);
 
-function gifSearch(e) {
-    //console.log(e.target.value);
+async function gifSearch(e) {
+    console.log(e.target.value);
+    let data = await fetch(`https://api.giphy.com/v1/tags?api_key=${key}&related/term="wow"`);
+    let res = await data.json();
+    //console.log(res);
 }
 
 // Search Results (4)
@@ -174,8 +177,8 @@ async function searchGIF(e) {
     if (searchQuery == "" || searchQuery == " ") {
         console.log("NO SPACES");
     } else{
+        console.log(res);
         const gifData = res.data;
-        console.log(gifData);
         let resultArray = Array.from(searchResult);
         let titleArray = Array.from(gifTitles);
         for(let i = 0; i<= 3; i++){
@@ -184,27 +187,33 @@ async function searchGIF(e) {
             resultArray[i].src = gifImage;
             resultArray[i].alt = gifTitle;
             titleArray[i].innerText = gifTitle; // TODO Increase title span on grid
+            console.log(gifTitle);
         }      
     }
 }
 
 // Delete
 
+let gifContainer = document.querySelector(".gif-suggestion");
 let deleteGif = document.querySelectorAll("#btn-close");
 deleteGif.forEach((btn) =>{
     btn.addEventListener("click", (e) =>{
         e.preventDefault();
-        console.log(e.target.id);
+        if (confirm("¿Seguro deseas eliminarlo?")) {
+            let gifParent = e.target.parentElement;
+            gifContainer.removeChild(gifParent);  
+        } else{
+            console.log("OK!");
+        }
     })
 })
 
-// Discover More
+
 
 
 // SECTION GIF TRENDS
 
 let gifTrendsDiv = document.querySelector(".gif-trends");
-let gifTrendsAll = [];
 
 //NOTE Giphy´s API
 
@@ -212,6 +221,7 @@ async function getTrends(url){
     let data = await fetch(url);
     let response = await data.json();
     if (data.ok) {
+        let gifTrendsAll = [];
         let trendResponse = response.data;
         for(element in trendResponse){
             let trendGif = trendResponse[element].images.fixed_height_downsampled.url;
@@ -233,9 +243,4 @@ getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=18&rating
 
 // Trend Hashtag Toggle
 
-let trendsToggle = document.querySelectorAll(".gif-trends img");
-trendsToggle.forEach((image) =>{
-    image.addEventListener("mouseover", () =>{
-        console.log("MOUSEOVER");
-    })
-})
+let trendsToggle = document.querySelectorAll(".trendGif"); // Why won´t querySelectorAll work?
