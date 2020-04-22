@@ -193,30 +193,48 @@ setTimeout(() => {
 
 
 
-// Search Coincidences TODO // https://api.giphy.com/v1/gifs/search/tags?api_key=APIKEY&q=termino
+// Search Coincidences
+
+let textAI = document.querySelectorAll("#searchPredict");
 
 searchBar.addEventListener("keyup", gifSearch);
 
 async function gifSearch(e) {
-    console.log(e.target.value);
-    let data = await fetch(`https://api.giphy.com/v1/tags?api_key=${key}&related/term="wow"`);
+    let query = e.target.value;
+    let data = await fetch(`https://api.giphy.com/v1/gifs/search/tags?api_key=${key}&q=${query}`);
     let res = await data.json();
-    //console.log(res);
+    if (data.ok) {
+    }
+    if (e.target.value == "" || e.target.value == " ") {
+        console.log("Don´t delete that much!");
+    } else{
+        let suggestedValue = res.data;
+        for(let i = 0; i<= 2; i++){
+            textAI[i].innerText = suggestedValue[i].name;
+        } 
+    }
+    
 }
 
 // Search Results (4)
 
 let searchResult = document.querySelectorAll("#gif-image");
+let gifTrendsDiv = document.querySelector(".gif-trends"); // "Gif Trends" div: Used below for the populating function too
 
 searchForm.addEventListener("submit", searchGIF);
 
 async function searchGIF(e) {
     e.preventDefault();
-
+    let searchQuery = searchBar.value;
+    let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
+    let res = await data.json();
+    if (data.ok) {
+        console.log(res);
+        gifTrendsDiv.style.display = "none";
     }
+}
     
     /*
-    let searchQuery = searchBar.value;
     
     let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
     let res = await data.json();
@@ -248,7 +266,8 @@ deleteGif.forEach((btn) =>{
         e.preventDefault();
         if (confirm("¿Seguro deseas eliminarlo?")) {
             let gifParent = e.target.parentElement;
-            gifContainer.removeChild(gifParent);  
+            gifContainer.removeChild(gifParent);
+            // TODO create new image via saved titles and urls in arrays up | 
         } else{
             console.log("OK!");
         }
@@ -269,8 +288,6 @@ btnsSuggest.forEach((button) =>{
 
 
 // SECTION GIF TRENDS
-
-let gifTrendsDiv = document.querySelector(".gif-trends");
 
 //NOTE Giphy´s API
 
