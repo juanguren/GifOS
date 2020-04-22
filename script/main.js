@@ -150,25 +150,72 @@ function searchClicked(e) {
 //  NOTE GIPHYs API:
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
-let searchResult = document.querySelectorAll("#gif-image");
-let gifTitles = document.querySelectorAll("#suggest-text");
-let gifIds = [];
 
-// Search Coincidences TODO
-/*searchBar.addEventListener("keyup", gifSearch);
+// GIF suggestions - Capture Data
+
+const titlesArray = [];
+const gifsArray = [];
+let images = document.querySelectorAll(".gif-image");
+let gifTitles = document.querySelectorAll("#suggest-text");
+
+async function getGifsRandom(url) {
+    let data = await fetch(url);
+    let response = await data.json();
+    if (data.ok) {
+        let gifRandom = response.data;
+        titlesArray.push(gifRandom.title);
+        gifsArray.push(gifRandom.images.fixed_height_downsampled.url);
+        
+        for(let i = 0; i<= 3; i++){
+            images[i].src = gifsArray[i];
+            gifTitles[i].innerText = titlesArray[i];
+        }
+    }
+}
+for(let i = 0; i<= 3; i++){
+    getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=16&rating=G`);
+}
+
+// GIF Suggestions - Populate captured data in the DOM
+/*
+let gifSuggestions = document.querySelectorAll(".gif");
+let gifTitles = document.querySelectorAll("#suggest-text");
+
+function postGifsRandom() {
+
+    for(let i = 0; i<= 3; i++){
+        images[i].src = gifsArray[i];
+    }
+}
+setTimeout(() => {
+    postGifsRandom();
+}, 2000);*/
+
+
+
+// Search Coincidences TODO // https://api.giphy.com/v1/gifs/search/tags?api_key=APIKEY&q=termino
+
+searchBar.addEventListener("keyup", gifSearch);
 
 async function gifSearch(e) {
     console.log(e.target.value);
     let data = await fetch(`https://api.giphy.com/v1/tags?api_key=${key}&related/term="wow"`);
     let res = await data.json();
     //console.log(res);
-}*/
+}
 
 // Search Results (4)
+
+let searchResult = document.querySelectorAll("#gif-image");
+
 searchForm.addEventListener("submit", searchGIF);
 
 async function searchGIF(e) {
     e.preventDefault();
+
+    }
+    
+    /*
     let searchQuery = searchBar.value;
     
     let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
@@ -189,8 +236,8 @@ async function searchGIF(e) {
             resultArray[i].alt = gifTitle;
             titleArray[i].innerText = gifTitle; // TODO Increase title span on grid
         }      
-    }
-}
+    } */
+
 
 // Delete
 
@@ -249,8 +296,6 @@ async function getTrends(url){
 }
 
 getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=18&rating=G`); 
-
-
 // Trend Hashtag Toggle
 
 let trendsToggle = document.querySelectorAll(".trendGif"); // Why won´t querySelectorAll work?
