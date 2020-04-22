@@ -254,7 +254,7 @@
 .gif-suggestion{
     margin-top: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -278,6 +278,7 @@
     color: #FFFFFF;
     letter-spacing: 0;
     margin-left: 5px;
+    width: max-content;
 }
 
 #btnSuggest{
@@ -301,7 +302,7 @@
 }
 
 /* FIXME : Width and height go to the appendable classes section */
-#gif-image{
+.gif-image{
     background-image: none;
     grid-area: gif;
     width: 100%;
