@@ -215,10 +215,10 @@ async function gifSearch(e) {
     }
 }
 
-// Search Results (4)
+// Search Results (16)
 
-let searchResult = document.querySelectorAll("#gif-image");
-let gifTrendsDiv = document.querySelector(".gif-trends"); // "Gif Trends" div: Used below for the populating function too
+let trendsSection = document.querySelector("#trends");
+let searchDiv = document.querySelector("#search");
 
 searchForm.addEventListener("submit", searchGIF);
 
@@ -227,9 +227,27 @@ async function searchGIF(e) {
     let searchQuery = searchBar.value;
     let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
     let res = await data.json();
-    if (data.ok) {
-        console.log(res);
-        gifTrendsDiv.style.display = "none";
+    data.ok ? console.log("Response is ok") : console.log("Response error. Maybe check the url being fetched");
+
+    if (searchQuery == "" || searchQuery == " ") {
+        console.log("NO SPACES");
+    } else{
+        const resultsAll = res.data;
+        trendsSection.style.display = "none";
+        let resultNodeList = [];
+        for(i in resultsAll){
+            let resultsUrl = resultsAll[i].images.fixed_height_downsampled.url
+            let img = document.createElement("img");
+            img.src = resultsUrl;
+            img.alt = resultsAll[i].title;
+            img.classList.add("searchGif");
+            searchDiv.appendChild(img);
+            resultNodeList = document.querySelectorAll(".searchGif");
+        }
+        let resultArray = Array.from(resultNodeList);
+        resultArray[4].classList.add("gif-span1");
+        resultArray[9].classList.add("gif-span2");
+        resultArray[14].classList.add("gif-span3");
     }
 }
     
@@ -248,10 +266,8 @@ async function searchGIF(e) {
         for(let i = 0; i<= 3; i++){
             let gifTitle = gifData[i].title;
             let gifImage = gifData[i].images.fixed_height_downsampled.url;
-            gifIds.push(gifData[i].id);
             resultArray[i].src = gifImage;
             resultArray[i].alt = gifTitle;
-            titleArray[i].innerText = gifTitle; // TODO Increase title span on grid
         }      
     } */
 
@@ -290,6 +306,8 @@ btnsSuggest.forEach((button) =>{
 
 //NOTE Giphy´s API
 
+let gifTrendsDiv = document.querySelector(".gif-trends"); // "Gif Trends" div: Used below for the populating function too
+
 async function getTrends(url){
     let data = await fetch(url);
     let response = await data.json();
@@ -305,7 +323,7 @@ async function getTrends(url){
             gifTrendsAll = document.querySelectorAll(".trendGif");
         }
         let gifTrendsArray = Array.from(gifTrendsAll);
-        // How to make this 2 recurrent?
+        // How to make this 3 recurrent?
         gifTrendsArray[4].classList.add("gif-span1");
         gifTrendsArray[9].classList.add("gif-span2");
         gifTrendsArray[14].classList.add("gif-span3");

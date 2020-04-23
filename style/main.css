@@ -134,6 +134,7 @@
 
 .inactive{
     opacity: 0;
+    visibility: hidden;
 }
 
 .active{
@@ -324,7 +325,6 @@
 
 .gif-trends{
     margin-top: 1em;
-    border: solid 1.5px crimson;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -346,6 +346,23 @@
 }
 
 .trendGif{
+    height: 200px;
+    width: 100%;
+}
+
+/* SECTION MAIN - GIF Search Results*/
+
+.gif-results{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.gif-results > img{
+    border: solid 1.5px black;
+}
+
+.searchGif{
     height: 200px;
     width: 100%;
 }
