@@ -367,6 +367,17 @@
     width: 100%;
 }
 
+.searchInactive {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.searchActive {
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s linear;
+    visibility: visible;
+}
+
 
 /* MEDIA QUERIES SECTION */
 

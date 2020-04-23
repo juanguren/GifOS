@@ -246,8 +246,10 @@ async function searchGIF(e) {
             img.alt = resultsAll[i].title;
             img.classList.add("searchGif");
             searchDiv.appendChild(img);
+            let section1 = document.querySelector(".searchContainer");
+            section1.classList.replace("searchInactive", "searchActive");
             resultNodeList = document.querySelectorAll(".searchGif");
-        }
+        } // The following code adds various spans to the selected img´s:
         let resultArray = Array.from(resultNodeList);
         resultArray[4].classList.add("gif-span1");
         resultArray[9].classList.add("gif-span2");
