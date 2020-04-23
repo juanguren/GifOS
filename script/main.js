@@ -213,7 +213,6 @@ async function gifSearch(e) {
             textAI[i].innerText = suggestedValue[i].name;
         } 
     }
-    
 }
 
 // Search Results (4)
@@ -309,10 +308,11 @@ async function getTrends(url){
         // How to make this 2 recurrent?
         gifTrendsArray[4].classList.add("gif-span1");
         gifTrendsArray[9].classList.add("gif-span2");
+        gifTrendsArray[14].classList.add("gif-span3");
     }
 }
 
-getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=18&rating=G`); 
+getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
 // Trend Hashtag Toggle
 
 let trendsToggle = document.querySelectorAll(".trendGif"); // Why won´t querySelectorAll work?

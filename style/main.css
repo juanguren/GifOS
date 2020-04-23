@@ -337,6 +337,10 @@
     grid-column: 3 / span 2;
 }
 
+.gif-span3{
+    grid-column-start: span 3;
+}
+
 .gif-trends > img{
     border: solid 1.5px black;
 }
