@@ -219,6 +219,7 @@ async function gifSearch(e) {
 
 let trendsSection = document.querySelector("#trends");
 let searchDiv = document.querySelector("#search");
+let searchResultTag = document.getElementById("searchTag");
 
 searchForm.addEventListener("submit", searchGIF);
 
@@ -232,6 +233,9 @@ async function searchGIF(e) {
     if (searchQuery == "" || searchQuery == " ") {
         console.log("NO SPACES");
     } else{
+        searchResultTag.innerText = searchQuery.toUpperCase();
+        searchResultTag.style.color = "crimson";
+
         const resultsAll = res.data;
         trendsSection.style.display = "none";
         let resultNodeList = [];
@@ -250,27 +254,6 @@ async function searchGIF(e) {
         resultArray[14].classList.add("gif-span3");
     }
 }
-    
-    /*
-    
-    let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`);
-    let res = await data.json();
-
-    data.ok ? console.log("Response is ok") : console.log("Response error. Maybe check the url being fetched");
-    if (searchQuery == "" || searchQuery == " ") {
-        console.log("NO SPACES");
-    } else{
-        const gifData = res.data;
-        let resultArray = Array.from(searchResult);
-        let titleArray = Array.from(gifTitles);
-        for(let i = 0; i<= 3; i++){
-            let gifTitle = gifData[i].title;
-            let gifImage = gifData[i].images.fixed_height_downsampled.url;
-            resultArray[i].src = gifImage;
-            resultArray[i].alt = gifTitle;
-        }      
-    } */
-
 
 // Delete
 
