@@ -249,7 +249,8 @@ async function searchGIF(e) {
             let section1 = document.querySelector(".searchContainer");
             section1.classList.replace("searchInactive", "searchActive");
             resultNodeList = document.querySelectorAll(".searchGif");
-        } // The following code adds various spans to the selected img´s:
+        }
+        // The following code adds various spans to the selected img´s:
         let resultArray = Array.from(resultNodeList);
         resultArray[4].classList.add("gif-span1");
         resultArray[9].classList.add("gif-span2");
@@ -258,6 +259,7 @@ async function searchGIF(e) {
 }
 
 // Delete
+// TODO - Call adittional function that fetchs a random gif and append it to the div
 
 let gifContainer = document.querySelector(".gif-suggestion");
 let deleteGif = document.querySelectorAll("#btn-close");
@@ -267,7 +269,6 @@ deleteGif.forEach((btn) =>{
         if (confirm("¿Seguro deseas eliminarlo?")) {
             let gifParent = e.target.parentElement;
             gifContainer.removeChild(gifParent);
-            // TODO create new image via saved titles and urls in arrays up | 
         } else{
             console.log("OK!");
         }
@@ -276,13 +277,14 @@ deleteGif.forEach((btn) =>{
 
 // Discover More ("Ver Mas" buttons)
 
+// TODO Change fetch url and leave it after
 btnsSuggest.forEach((button) =>{
-    button.addEventListener("click", () =>{
+    button.addEventListener("click", (e) =>{
         let data = fetch(`https://api.giphy.com/v1/gifs/8MObiTsZrFlTi?api_key=bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`)
             .then(res => res.json())
             .then((data) =>{
                 console.log(data);
-            })
+        })
     })
 })
 
