@@ -60,6 +60,7 @@ let themeDay = document.querySelector(".theme-day");
 let themeNight = document.querySelector(".theme-night");
 let logo = document.querySelector(".logo").firstElementChild.firstChild;
 let misGifos = document.querySelector(".gif-options").lastElementChild;
+let themeChange = false;
 
 // Creating element for appending the new stylesheet
 let newStyle = document.createElement("link");
@@ -80,6 +81,7 @@ function nightChange() {
 
     misGifos.style.color = "white";
     logo.setAttribute("src", "assets/gifOF_logo_dark.png");
+    themeChange = true;
     buttonsNight();
 }
 
@@ -105,6 +107,7 @@ function dayChange() {
     suggestedGifs.forEach((element) =>{
         element.classList.replace("gifNight", "gifDay");
     });
+    themeChange = false;
 }
 
 
@@ -191,8 +194,6 @@ setTimeout(() => {
     postGifsRandom();
 }, 2000);*/
 
-
-
 // Search Coincidences
 
 let textAI = document.querySelectorAll("#searchPredict");
@@ -220,6 +221,8 @@ async function gifSearch(e) {
 let trendsSection = document.querySelector("#trends");
 let searchDiv = document.querySelector("#search");
 let searchResultTag = document.getElementById("searchTag");
+
+
 
 searchForm.addEventListener("submit", searchGIF);
 
@@ -258,8 +261,7 @@ async function searchGIF(e) {
     }
 }
 
-// Delete
-// TODO - Call adittional function that fetchs a random gif and append it to the div
+// Delete GIF ===========================================
 
 let gifContainer = document.querySelector(".gif-suggestion");
 let deleteGif = document.querySelectorAll("#btn-close");
@@ -269,11 +271,44 @@ deleteGif.forEach((btn) =>{
         if (confirm("¿Seguro deseas eliminarlo?")) {
             let gifParent = e.target.parentElement;
             gifContainer.removeChild(gifParent);
+            
+            appendNewGif(); // NEW GIF ADDED
+
         } else{
             console.log("OK!");
         }
     })
 })
+
+// THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EACH TIME 1 IS DELETED.
+
+let appendNewGif = () =>{
+
+    let data = fetch(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=16&rating=G`)
+    .then(data => data.json())
+    .then((res) =>{
+        const resData = res.data;
+        const resUrl = resData.images.fixed_height_downsampled.url;
+        const resTitle = resData.title;
+        let img = document.createElement("img");
+        img.src = resUrl;
+        img.alt = resTitle;
+        let div = document.createElement("div");
+        div.classList.add("gif");
+        let h5 = `<h5 id="suggest-text">${resTitle}</h5>
+                <img src="assets/button3.svg" alt="close button 2" id="btn-close">
+                <img src="${resUrl}" alt="${resTitle}" class="gif-image"> 
+                <button id="btnSuggest" class="btnSuggestDay">Ver mas</button>`;
+        if (themeChange) {
+            div.classList.add("gifNight");
+        } else{
+            div.classList.add("gifDay");
+        }
+        div.innerHTML = h5;
+        console.log(div);
+        gifContainer.appendChild(div);
+    });
+}
 
 // Discover More ("Ver Mas" buttons)
 
