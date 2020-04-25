@@ -154,10 +154,8 @@ function searchClicked(e) {
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 
-// GIF suggestions - Capture Data
+//============ GIF SUGGESTIONS (4) =========================
 
-const titlesArray = [];
-const gifsArray = [];
 let images = document.querySelectorAll(".gif-image");
 let gifTitles = document.querySelectorAll("#suggest-text");
 
@@ -166,33 +164,28 @@ async function getGifsRandom(url) {
     let response = await data.json();
     if (data.ok) {
         let gifRandom = response.data;
-        titlesArray.push(gifRandom.title);
-        gifsArray.push(gifRandom.images.fixed_height_downsampled.url);
-        
-        for(let i = 0; i<= 3; i++){
-            images[i].src = gifsArray[i];
-            gifTitles[i].innerText = titlesArray[i];
+        let gifUrl = gifRandom.images.fixed_height_downsampled.url;
+        let gifTitle = gifRandom.title;
+        let div = document.createElement("div");
+        div.classList.add("gif");
+        if (themeChange) {
+            div.classList.add("gifNight");
+        } else{
+            div.classList.add("gifDay");
         }
+        let divContent = `<h5 id="suggest-text">${gifTitle}</h5>
+                <img src="assets/button3.svg" alt="close button 2" id="btn-close">
+                <img src="${gifUrl}" alt="${gifTitle}" class="gif-image"> 
+                <button id="btnSuggest" class="btnSuggestDay">Ver mas</button>`;
+        div.innerHTML = divContent;
+        console.log(div);
+        let gifContainer = document.querySelector(".gif-suggestion");
+        gifContainer.appendChild(div);
     }
 }
 for(let i = 0; i<= 3; i++){
-    getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=16&rating=G`);
+    getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=4&rating=G`);
 }
-
-// GIF Suggestions - Populate captured data in the DOM
-/*
-let gifSuggestions = document.querySelectorAll(".gif");
-let gifTitles = document.querySelectorAll("#suggest-text");
-
-function postGifsRandom() {
-
-    for(let i = 0; i<= 3; i++){
-        images[i].src = gifsArray[i];
-    }
-}
-setTimeout(() => {
-    postGifsRandom();
-}, 2000);*/
 
 // Search Coincidences
 
@@ -221,8 +214,6 @@ async function gifSearch(e) {
 let trendsSection = document.querySelector("#trends");
 let searchDiv = document.querySelector("#search");
 let searchResultTag = document.getElementById("searchTag");
-
-
 
 searchForm.addEventListener("submit", searchGIF);
 
@@ -262,23 +253,25 @@ async function searchGIF(e) {
 }
 
 // Delete GIF ===========================================
-
 let gifContainer = document.querySelector(".gif-suggestion");
-let deleteGif = document.querySelectorAll("#btn-close");
-deleteGif.forEach((btn) =>{
-    btn.addEventListener("click", (e) =>{
+
+setTimeout(() => {
+    let deleteGif = document.querySelectorAll("#btn-close");
+    deleteGif.forEach((btn) =>{
+        btn.addEventListener("click", (e) =>{
         e.preventDefault();
         if (confirm("¿Seguro deseas eliminarlo?")) {
             let gifParent = e.target.parentElement;
-            gifContainer.removeChild(gifParent);
-            
+            console.log(gifParent);
+            console.log(gifContainer);
             appendNewGif(); // NEW GIF ADDED
-
+            gifContainer.removeChild(gifParent);
         } else{
             console.log("OK!");
         }
     })
 })
+}, 2000);
 
 // THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EACH TIME 1 IS DELETED.
 
