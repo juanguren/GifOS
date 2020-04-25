@@ -150,7 +150,7 @@ function searchClicked(e) {
     }     
 }
 
-//  NOTE GIPHYs API:
+//  NOTE GIPHYs API AHEAD:
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 
@@ -187,7 +187,9 @@ for(let i = 0; i<= 3; i++){
     getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=4&rating=G`);
 }
 
-// Search Coincidences
+/**
+ *============= Search Coincidendes=================
+ */
 
 let textAI = document.querySelectorAll("#searchPredict");
 
@@ -209,11 +211,35 @@ async function gifSearch(e) {
     }
 }
 
-// Search Results (16)
-
 let trendsSection = document.querySelector("#trends");
 let searchDiv = document.querySelector("#search");
 let searchResultTag = document.getElementById("searchTag");
+let suggestedQuery;
+
+/**
+ * ============= Search Queries based on "Search Coincidences" ☝️ =================
+ */
+
+textAI.forEach((prediction) =>{
+    prediction.addEventListener("click", (e) =>{
+        console.log(e.target.innerText);
+        suggestedQuery = e.target.innerText;
+        let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${suggestedQuery}&limit=16&offset=0&rating=G&lang=es`)
+            .then(data => data.json())
+            .then((res) =>{
+                let searchQuery = searchBar.value;
+                const predictionResults = res.data;
+                searchResultTag.innerText = suggestedQuery.toUpperCase();
+                searchResultTag.style.color = "crimson";
+
+                createGifsOnDemand(predictionResults); // GIF creator function
+            })
+    })
+})
+
+/**
+ * ============= Normal Search Results (16)=========================
+*/
 
 searchForm.addEventListener("submit", searchGIF);
 
@@ -231,13 +257,25 @@ async function searchGIF(e) {
         searchResultTag.style.color = "crimson";
 
         const resultsAll = res.data;
-        trendsSection.style.display = "none";
+        createGifsOnDemand(resultsAll); // GIF creator function
+    }
+}
+
+/**
+ * ========================= This function appends GIFs to the DOM =======================
+ * 
+ * @param {*fetched Data from searches} data 
+ */
+
+function createGifsOnDemand(data) {
+    console.log(data);
+    trendsSection.style.display = "none";
         let resultNodeList = [];
-        for(i in resultsAll){
-            let resultsUrl = resultsAll[i].images.fixed_height_downsampled.url
+        for(i in data){
+            let resultsUrl = data[i].images.fixed_height_downsampled.url
             let img = document.createElement("img");
             img.src = resultsUrl;
-            img.alt = resultsAll[i].title;
+            img.alt = data[i].title;
             img.classList.add("searchGif");
             searchDiv.appendChild(img);
             let section1 = document.querySelector(".searchContainer");
@@ -249,10 +287,10 @@ async function searchGIF(e) {
         resultArray[4].classList.add("gif-span1");
         resultArray[9].classList.add("gif-span2");
         resultArray[14].classList.add("gif-span3");
-    }
 }
 
-// Delete GIF ===========================================
+// ========================== Delete GIF ===========================================
+
 let gifContainer = document.querySelector(".gif-suggestion");
 
 setTimeout(() => {
@@ -262,10 +300,9 @@ setTimeout(() => {
         e.preventDefault();
         if (confirm("¿Seguro deseas eliminarlo?")) {
             let gifParent = e.target.parentElement;
-            console.log(gifParent);
-            console.log(gifContainer);
             appendNewGif(); // NEW GIF ADDED
             gifContainer.removeChild(gifParent);
+            console.log(gifContainer);
         } else{
             console.log("OK!");
         }
@@ -273,7 +310,7 @@ setTimeout(() => {
 })
 }, 2000);
 
-// THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EACH TIME 1 IS DELETED.
+// THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EVERY TIME 1 IS DELETED.
 
 let appendNewGif = () =>{
 
@@ -283,9 +320,6 @@ let appendNewGif = () =>{
         const resData = res.data;
         const resUrl = resData.images.fixed_height_downsampled.url;
         const resTitle = resData.title;
-        let img = document.createElement("img");
-        img.src = resUrl;
-        img.alt = resTitle;
         let div = document.createElement("div");
         div.classList.add("gif");
         let h5 = `<h5 id="suggest-text">${resTitle}</h5>
@@ -314,8 +348,7 @@ btnsSuggest.forEach((button) =>{
                 console.log(data);
         })
     })
-})
-
+});
 
 // SECTION GIF TRENDS
 
