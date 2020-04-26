@@ -269,7 +269,7 @@ async function searchGIF(e) {
 /**
  * ========================= This function appends GIFs to the DOM =======================
  * 
- * @param {*fetched Data from searches} data 
+ * @param {*fetched Object from searches} data 
  */
 
 function createGifsOnDemand(data) {
@@ -328,19 +328,43 @@ let appendNewGif = () =>{
         let div = document.createElement("div");
         div.classList.add("gif");
         let h5 = `<h5 id="suggest-text">${resTitle}</h5>
-                <img src="assets/button3.svg" alt="close button 2" class="btn-close">
+                <img src="assets/button3.svg" alt="close button 2" class="btn-close newClose">
                 <img src="${resUrl}" alt="${resTitle}" class="gif-image"> 
                 <button class="btnSuggestDay btnSuggest">Ver mas</button>`;
+        setTimeout(() => {
+            newCloseBtns = document.querySelectorAll(".newClose");
+            deleteNewRandomGifs(newCloseBtns);
+        }, 0);
+        
         if (themeChange) {
             div.classList.add("gifNight");
         } else{
             div.classList.add("gifDay");
         }
         div.innerHTML = h5;
-        newCloseBtns = document.querySelector(".close");
         gifContainer.appendChild(div);
     });
 }
+
+/**
+ * @param {Node List} closeButtons 
+ * 
+ * // ================ Event function for deleting newly created GIFs =============
+ */
+function deleteNewRandomGifs(closeButtons) {
+    closeButtons.forEach((button) =>{
+        button.addEventListener("click", (e) =>{
+            if (confirm("¿Seguro deseas eliminarlo?")) {
+                let gifParent = e.target.parentElement;
+                appendNewGif(); // NEW GIF ADDED
+                gifContainer.removeChild(gifParent);
+            } else{
+                console.log("OK!");
+            }
+        })
+    })
+}
+
 
 // Discover More ("Ver Mas" buttons)
 
