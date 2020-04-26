@@ -282,7 +282,7 @@
     width: max-content;
 }
 
-#btnSuggest{
+.btnSuggest{
     position: absolute;
     top: 80%;
     left: 3%;
@@ -311,7 +311,7 @@
     border: solid lightslategray 1px;
 }
 
-#btn-close{
+.btn-close{
     justify-self: end;
     grid-area: button;
     cursor: pointer;

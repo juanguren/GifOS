@@ -30,8 +30,8 @@ function clickToggle(e) {
 }
 
 // Theme Selection
-
-let btnsSuggest = document.querySelectorAll("#btnSuggest"); // Nodelist of buttons overlapping suggested gifs
+// TODO Change IDs for a class (Ids are unique)
+let btnsSuggest = document.querySelectorAll(".btnSuggest"); // Nodelist of buttons overlapping suggested gifs
 let topBar = document.getElementById("top-bar"); // Bar at the very top of the application
 let topHeader = document.getElementById("top-header");
 let suggestedGifs = document.querySelectorAll(".gif");
@@ -43,7 +43,7 @@ let buttonsNight = () =>{
     btnThemes.classList.add("btn-night");
     btnCreate.classList.add("btn-night");
     // Selecting the nodelist buttons
-    btnsSuggest.forEach((button) =>{
+    verMasBtns.forEach((button) =>{
         button.classList.replace("btnSuggestDay", "btnSuggestNight");
     });
 
@@ -96,7 +96,7 @@ function dayChange() {
     document.body.removeChild(newStyle);
 
     // Selecting the nodelist buttons
-    btnsSuggest.forEach((button) =>{
+    verMasBtns.forEach((button) =>{
         button.classList.replace("btnSuggestNight", "btnSuggestDay");
     });
 
@@ -158,15 +158,17 @@ const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 
 let images = document.querySelectorAll(".gif-image");
 let gifTitles = document.querySelectorAll("#suggest-text");
+let closeBtns;
+let verMasBtns;
 
-async function getGifsRandom(url) {
+async function getGifsRandom(url) { // Devolver promesa con .then fuera de la función
     let data = await fetch(url);
     let response = await data.json();
     if (data.ok) {
         let gifRandom = response.data;
         let gifUrl = gifRandom.images.fixed_height_downsampled.url;
         let gifTitle = gifRandom.title;
-        let div = document.createElement("div");
+        let div = document.createElement("div"); // TODO Call a function that creates the GIF element
         div.classList.add("gif");
         if (themeChange) {
             div.classList.add("gifNight");
@@ -174,17 +176,20 @@ async function getGifsRandom(url) {
             div.classList.add("gifDay");
         }
         let divContent = `<h5 id="suggest-text">${gifTitle}</h5>
-                <img src="assets/button3.svg" alt="close button 2" id="btn-close">
+                <img src="assets/button3.svg" alt="close button 2" class="btn-close">
                 <img src="${gifUrl}" alt="${gifTitle}" class="gif-image"> 
-                <button id="btnSuggest" class="btnSuggestDay">Ver mas</button>`;
+                <button class="btnSuggestDay btnSuggest">Ver mas</button>`;
         div.innerHTML = divContent;
         console.log(div);
         let gifContainer = document.querySelector(".gif-suggestion");
         gifContainer.appendChild(div);
+        closeBtns = document.querySelectorAll(".btn-close");
+        verMasBtns = document.querySelectorAll(".btnSuggest");
     }
 }
 for(let i = 0; i<= 3; i++){
     getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=4&rating=G`);
+        //.then()
 }
 
 /**
@@ -268,7 +273,6 @@ async function searchGIF(e) {
  */
 
 function createGifsOnDemand(data) {
-    console.log(data);
     trendsSection.style.display = "none";
         let resultNodeList = [];
         for(i in data){
@@ -294,8 +298,7 @@ function createGifsOnDemand(data) {
 let gifContainer = document.querySelector(".gif-suggestion");
 
 setTimeout(() => {
-    let deleteGif = document.querySelectorAll("#btn-close");
-    deleteGif.forEach((btn) =>{
+    closeBtns.forEach((btn) =>{
         btn.addEventListener("click", (e) =>{
         e.preventDefault();
         if (confirm("¿Seguro deseas eliminarlo?")) {
@@ -308,9 +311,11 @@ setTimeout(() => {
         }
     })
 })
-}, 2000);
+}, 2500);
 
 // THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EVERY TIME 1 IS DELETED.
+
+let newCloseBtns;
 
 let appendNewGif = () =>{
 
@@ -323,16 +328,16 @@ let appendNewGif = () =>{
         let div = document.createElement("div");
         div.classList.add("gif");
         let h5 = `<h5 id="suggest-text">${resTitle}</h5>
-                <img src="assets/button3.svg" alt="close button 2" id="btn-close">
+                <img src="assets/button3.svg" alt="close button 2" class="btn-close">
                 <img src="${resUrl}" alt="${resTitle}" class="gif-image"> 
-                <button id="btnSuggest" class="btnSuggestDay">Ver mas</button>`;
+                <button class="btnSuggestDay btnSuggest">Ver mas</button>`;
         if (themeChange) {
             div.classList.add("gifNight");
         } else{
             div.classList.add("gifDay");
         }
         div.innerHTML = h5;
-        console.log(div);
+        newCloseBtns = document.querySelector(".close");
         gifContainer.appendChild(div);
     });
 }
@@ -340,19 +345,19 @@ let appendNewGif = () =>{
 // Discover More ("Ver Mas" buttons)
 
 // TODO Change fetch url and leave it after
-btnsSuggest.forEach((button) =>{
-    button.addEventListener("click", (e) =>{
-        let data = fetch(`https://api.giphy.com/v1/gifs/8MObiTsZrFlTi?api_key=bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`)
-            .then(res => res.json())
-            .then((data) =>{
-                console.log(data);
+setTimeout(() => {
+    verMasBtns.forEach((button) =>{
+        button.addEventListener("click", (e) =>{
+            let data = fetch(`https://api.giphy.com/v1/gifs/8MObiTsZrFlTi?api_key=bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`)
+                .then(res => res.json())
+                .then((data) =>{
+                    console.log(data);
+            })
         })
-    })
-});
+    });
+}, 2500);
 
 // SECTION GIF TRENDS
-
-//NOTE Giphy´s API
 
 let gifTrendsDiv = document.querySelector(".gif-trends"); // "Gif Trends" div: Used below for the populating function too
 
