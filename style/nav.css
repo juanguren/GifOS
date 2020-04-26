@@ -54,6 +54,17 @@
     font-size: 14px;
 }
 
+/* SECTION Appendable classes */
+
+.not-show {display: none;}
+
+.show{display: block;}
+
+.gif-size{
+    width: 100%;
+    height: 200px;
+}
+
 /* SECTION UPPER BAR */
 
 .upperBar-day{
@@ -123,6 +134,7 @@
 
 .inactive{
     opacity: 0;
+    visibility: hidden;
 }
 
 .active{
