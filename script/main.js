@@ -157,7 +157,7 @@ const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 //============ GIF SUGGESTIONS (4) =========================
 
 let images = document.querySelectorAll(".gif-image");
-let gifTitles = document.querySelectorAll("#suggest-text");
+let gifTitles;
 let closeBtns;
 let verMasBtns;
 
@@ -183,8 +183,10 @@ async function getGifsRandom(url) { // Devolver promesa con .then fuera de la fu
         console.log(div);
         let gifContainer = document.querySelector(".gif-suggestion");
         gifContainer.appendChild(div);
+
         closeBtns = document.querySelectorAll(".btn-close");
         verMasBtns = document.querySelectorAll(".btnSuggest");
+        gifTitles = document.querySelectorAll("#suggest-text");
     }
 }
 for(let i = 0; i<= 3; i++){
@@ -316,6 +318,7 @@ setTimeout(() => {
 // THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EVERY TIME 1 IS DELETED.
 
 let newCloseBtns;
+let newVermasBtns;
 
 let appendNewGif = () =>{
 
@@ -330,9 +333,11 @@ let appendNewGif = () =>{
         let h5 = `<h5 id="suggest-text">${resTitle}</h5>
                 <img src="assets/button3.svg" alt="close button 2" class="btn-close newClose">
                 <img src="${resUrl}" alt="${resTitle}" class="gif-image"> 
-                <button class="btnSuggestDay btnSuggest">Ver mas</button>`;
+                <button class="btnSuggestDay btnSuggest newBtn">Ver mas</button>`;
         setTimeout(() => {
             newCloseBtns = document.querySelectorAll(".newClose");
+            newDiscoversBtns = document.querySelectorAll(".newBtn");
+            searchByNewGif(newDiscoversBtns);
             deleteNewRandomGifs(newCloseBtns);
         }, 0);
         
@@ -347,9 +352,9 @@ let appendNewGif = () =>{
 }
 
 /**
- * @param {Node List} closeButtons 
- * 
  * // ================ Event function for deleting newly created GIFs =============
+ * 
+ * @param {Node List} closeButtons 
  */
 function deleteNewRandomGifs(closeButtons) {
     closeButtons.forEach((button) =>{
@@ -365,14 +370,36 @@ function deleteNewRandomGifs(closeButtons) {
     })
 }
 
+/**
+ * // ================ Event function for searches based on GIfs created after deleting one of the originals =============
+ * 
+ * @param {Node List} buttons 
+ */
+function searchByNewGif(buttons) {
+    buttons.forEach((element) =>{
+        element.addEventListener("click", (e) =>{
+            let parent = e.target.parentElement;
+            let textChild = parent.firstChild.innerText;
+            
+            let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${textChild}&limit=16&offset=0&rating=G&lang=es`)
+                .then(res => res.json())
+                .then((data) =>{
+                    let query = data.data;
+                    searchResultTag.innerText = textChild.toUpperCase();
+                    searchResultTag.style.color = "crimson";
+                    createGifsOnDemand(query);
+                })
+        })
+    })
+}
 
 // Discover More ("Ver Mas" buttons)
 
-// TODO Change fetch url and leave it after
+// TODO Change fetch url and leave it after 
 setTimeout(() => {
     verMasBtns.forEach((button) =>{
         button.addEventListener("click", (e) =>{
-            let data = fetch(`https://api.giphy.com/v1/gifs/8MObiTsZrFlTi?api_key=bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`)
+            let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`)
                 .then(res => res.json())
                 .then((data) =>{
                     console.log(data);
