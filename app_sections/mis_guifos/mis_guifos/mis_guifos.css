@@ -52,7 +52,8 @@
     background: #E6E6E6;
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
     padding: 4em;
-    padding-bottom: .5em;
+    padding-top: 2.5em;
+    padding-bottom: 1.5em;
 }
 
 .createGif span{
@@ -62,12 +63,11 @@
 
 .createGif img{
     position: relative;
-    top: -58px;
+    top: -26px;
     right: 3em;
 }
 
 .createGif p, ul, button{
-    position: relative;
     bottom: 2em;
 }
 
