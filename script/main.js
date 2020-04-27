@@ -408,10 +408,16 @@ function searchByNewGif(buttons) {
 setTimeout(() => {
     verMasBtns.forEach((button) =>{
         button.addEventListener("click", (e) =>{
+            let parent = e.target.parentElement;
+            let searchQuery = parent.firstChild.innerText;
+
             let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`)
                 .then(res => res.json())
                 .then((data) =>{
-                    console.log(data);
+                    searchResultTag.innerText = searchQuery.toUpperCase();
+                    searchResultTag.style.color = "crimson";
+                    let query = data.data;
+                    createGifsOnDemand(query);
             })
         })
     });
