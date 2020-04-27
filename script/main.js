@@ -110,6 +110,15 @@ function dayChange() {
     themeChange = false;
 }
 
+// ====== "Mis Gifos - Link to page section"
+
+let myGifs = document.getElementById("myGifs");
+
+myGifs.addEventListener("click", () =>{
+    let myGifsClick = true;
+    localStorage.setItem("Mis_Gifos_Was_Clicked", myGifsClick);
+})
+
 
 // SECTION Search
 
