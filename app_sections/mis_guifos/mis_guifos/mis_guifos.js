@@ -19,4 +19,22 @@ function clickToggle(e) {
     }
 }
 
-// Theme Selection
+// ======================= Theme Selection ==========================
+
+
+// ======================= Hide "create GIF box" based on "Mis gifos" click ==========================
+
+let gifBox = document.querySelector(".create-container");
+
+let hideGifBox = () =>{
+    let misGifosClick = localStorage.getItem("Mis_Gifos_Was_Clicked");
+    console.log(misGifosClick);
+    if (misGifosClick) {
+        gifBox.style.display = "none";
+    }
+}
+
+hideGifBox();
+
+// ======================= Show "create GIF box" based on "Crear GIFS" click ==========================
+
