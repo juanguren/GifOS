@@ -31,6 +31,8 @@ let hideGifBox = () =>{
     console.log(misGifosClick);
     if (misGifosClick) {
         gifBox.style.display = "none";
+    } else{
+        console.log(`Button "Crear GIFS" selected`);
     }
 }
 
