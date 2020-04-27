@@ -39,22 +39,36 @@
     width: 70%; /* 684px; */
 }
 
-.createGif{
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
-}
-
-.createGif h5{
+.create-container h5{
     font-family: var(--fontBold);
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
     background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    padding: 2px;
+}
+
+.createGif{
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    padding: 4em;
+    padding-bottom: .5em;
 }
 
 .createGif span{
     font-family: var(--fontBold);
     font-weight: 700;
+}
+
+.createGif img{
+    position: relative;
+    top: -58px;
+    right: 3em;
+}
+
+.createGif p, ul, button{
+    position: relative;
+    bottom: 2em;
 }
 
 #instruction{
@@ -63,4 +77,43 @@
     letter-spacing: 0;
     line-height: 22px;
     font-weight: 700;
+}
+
+.list{
+    margin-top: .5em;
+}
+
+.button-container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button-container button{
+    padding: .5rem 30px;
+    margin: 0 .5em;
+    cursor: pointer;
+}
+
+#btn-cancel{
+    background: #FFF4FD;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+#btn-cancel:hover{
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
+}
+
+#btn-start{
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+#btn-start:hover{
+    background: #E6BBE2;
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
 }
