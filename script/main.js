@@ -36,7 +36,7 @@ let topBar = document.getElementById("top-bar"); // Bar at the very top of the a
 let topHeader = document.getElementById("top-header");
 let suggestedGifs = document.querySelectorAll(".gif");
 
-// NOTE This function changes various elements from the DOM, the ones WITHOUT ANY ASSOCIATED EVENT. Using classes from the night stylesheet.
+// This function changes various elements from the DOM, the ones WITHOUT ANY ASSOCIATED EVENT. Using classes from the night stylesheet.
 let buttonsNight = () =>{
     let btnCreate = document.getElementById("btn-create-gif");
 
@@ -140,21 +140,18 @@ let toggleBar = document.querySelector(".search-toggle");
 let btnSearch = document.querySelector("#button-search");
 let searchIcon = document.querySelector("#lens-img");
 
-// This boolean helps identify the search toogle status for display purposes
-let searchToggleStatus = false; 
+let searchToggleStatus = false; // This boolean helps identify the search toogle status for display purposes
+
+// Capture outside clicks for closing the search coincidences menu in the search form
 
 window.addEventListener("mouseup", (e) =>{
     if (e.target != toggleBar && e.target.parentNode != toggleBar) {
         toggleBar.style.display = "none";
-
-        btnSearch.classList.remove("btn-active");
-        btnSearch.classList.add("btn-inactive");
-
-        searchIcon.src = "assets/lupa_inactive.svg";
-
         searchToggleStatus = false;
     }
 })
+
+// Toggle search coincidences menu based on user click
 
 searchBar.addEventListener("click", searchClicked);
 
@@ -165,6 +162,8 @@ function searchClicked(e) {
         searchToggleStatus = true;
     }     
 }
+
+// Activate/Deactivate search button based on user input 
 
 searchBar.addEventListener("keyup", activateType);
 
