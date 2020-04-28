@@ -115,6 +115,7 @@ function dayChange() {
 let btnCreateGif = document.getElementById("btn-create-gif");
 
 btnCreateGif.addEventListener("click", () =>{
+    location.href = "app_sections/mis_guifos/mis_guifos/mis_guifos.html";
     let checkLocalValue = localStorage.getItem("Mis_Gifos_Was_Clicked");
     if (checkLocalValue) {
         localStorage.setItem("Mis_Gifos_Was_Clicked", false);
@@ -160,11 +161,6 @@ searchBar.addEventListener("click", searchClicked);
 function searchClicked(e) {
     if (!searchToggleStatus) {
         toggleBar.style.display = "block";
-        
-        btnSearch.classList.remove("btn-inactive");
-        btnSearch.classList.add("btn-active");
-
-        searchIcon.src = "assets/lupa.svg";
 
         searchToggleStatus = true;
     }     
@@ -231,6 +227,11 @@ async function gifSearch(e) {
     if (e.target.value == "" || e.target.value == " ") {
         console.log("Don´t delete that much!");
     } else{
+        // Activate search button when typing
+        btnSearch.classList.remove("btn-inactive");
+        btnSearch.classList.add("btn-active");
+        searchIcon.src = "assets/lupa.svg";
+
         let suggestedValue = res.data;
         for(let i = 0; i<= 2; i++){
             textAI[i].innerText = suggestedValue[i].name;
@@ -254,6 +255,8 @@ textAI.forEach((prediction) =>{
         let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${suggestedQuery}&limit=16&offset=0&rating=G&lang=es`)
             .then(data => data.json())
             .then((res) =>{
+                location.href = "#search-scroll";
+
                 let searchQuery = searchBar.value;
                 const predictionResults = res.data;
                 searchResultTag.innerText = suggestedQuery.toUpperCase();
@@ -280,11 +283,15 @@ async function searchGIF(e) {
     if (searchQuery == "" || searchQuery == " ") {
         console.log("NO SPACES");
     } else{
+
+        location.href = "#search-scroll";
+
         searchResultTag.innerText = searchQuery.toUpperCase();
         searchResultTag.style.color = "crimson";
 
         const resultsAll = res.data;
         createGifsOnDemand(resultsAll); // GIF creator function
+        
     }
 }
 
@@ -400,10 +407,11 @@ function searchByNewGif(buttons) {
         element.addEventListener("click", (e) =>{
             let parent = e.target.parentElement;
             let textChild = parent.firstChild.innerText;
-            
             let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${textChild}&limit=16&offset=0&rating=G&lang=es`)
                 .then(res => res.json())
                 .then((data) =>{
+                    location.href = "#search-scroll";
+
                     let query = data.data;
                     searchResultTag.innerText = textChild.toUpperCase();
                     searchResultTag.style.color = "crimson";
@@ -425,6 +433,8 @@ setTimeout(() => {
             let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`)
                 .then(res => res.json())
                 .then((data) =>{
+                    location.href = "#search-scroll";
+
                     searchResultTag.innerText = searchQuery.toUpperCase();
                     searchResultTag.style.color = "crimson";
                     let query = data.data;

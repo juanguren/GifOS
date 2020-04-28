@@ -20,7 +20,7 @@
                 <a href=""><img src="assets/gifOF_logo.png" alt="Logo"></a>
             </div>
             <div class="gif-options">
-                <a href="app_sections/mis_guifos/mis_guifos/mis_guifos.html"><button id="btn-create-gif" class="btn btn-active">Crear GIFS</button></a>
+                <button id="btn-create-gif" class="btn btn-active">Crear GIFS</button>
                 <div class="dropdown">
                     <button id="btn-choose-theme" class="btn btn-active dropbtn">Elegir Tema
                        <i class="fa fa-caret-down"></i>
@@ -38,9 +38,9 @@
             <div id="top-header" class="topHeader-day">
                 <h4>Buscar</h4>
             </div>
-            <form class="search-box">
+            <form class="search-box" action="">
                 <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
-                <button type="submit" class="btn btn-inactive" id="button-search" type="submit">
+                <button type="submit" class="btn btn-inactive" id="button-search">
                     <img id="lens-img" src="assets/lupa_inactive.svg" alt="Icono de lupa"> Buscar</button>
                 </form>
         </section>
@@ -58,7 +58,8 @@
             </div>
             <div class="gif-suggestion">
             </div>
-        </section
+        </section>
+        <a id="search-scroll"></a>
         <!-- SECTION MAIN | GIF trends -->
         <section class="top-container" id="trends">
             <div class="rectangle-subtitle">
@@ -68,9 +69,9 @@
             </div>
         </section>
         <!-- SECTION MAIN | GIF Search Results -->
-        <section class="top-container searchContainer searchInactive">
+        <section class="top-container searchContainer searchInactive" id="search-results">
             <div class="rectangle-subtitle">
-                <h5 id="searchTag">Resultados:</h5>
+                <h5 id="searchTag"></h5>
             </div>
             <div class="gif-results" id="search">
             </div>
