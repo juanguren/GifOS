@@ -166,6 +166,21 @@ function searchClicked(e) {
     }     
 }
 
+searchBar.addEventListener("keyup", activateType);
+
+function activateType(e) {
+    if (e.target.value == "" || e.target.value == " ") {
+        if (btnSearch.classList.contains("btn-active")) {
+            btnSearch.classList.replace("btn-active", "btn-inactive");
+            searchIcon.src = "assets/lupa_inactive.svg";
+        }
+    } else{
+        btnSearch.classList.remove("btn-inactive");
+        btnSearch.classList.add("btn-active");
+        searchIcon.src = "assets/lupa.svg";
+    }
+}
+
 //  NOTE GIPHYs API AHEAD:
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
@@ -227,11 +242,6 @@ async function gifSearch(e) {
     if (e.target.value == "" || e.target.value == " ") {
         console.log("Don´t delete that much!");
     } else{
-        // Activate search button when typing
-        btnSearch.classList.remove("btn-inactive");
-        btnSearch.classList.add("btn-active");
-        searchIcon.src = "assets/lupa.svg";
-
         let suggestedValue = res.data;
         for(let i = 0; i<= 2; i++){
             textAI[i].innerText = suggestedValue[i].name;
