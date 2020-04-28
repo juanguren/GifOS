@@ -112,8 +112,8 @@
     text-align: end;
 }
 
-.gif-options a:hover{
-    border: 1px solid #110038;
+#myGifs:hover{
+    border: 1px solid var(--fontColor);
 }
 
 .gif-options select{
