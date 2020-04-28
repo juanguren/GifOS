@@ -117,7 +117,7 @@ let btnCreateGif = document.getElementById("btn-create-gif");
 btnCreateGif.addEventListener("click", () =>{
     let checkLocalValue = localStorage.getItem("Mis_Gifos_Was_Clicked");
     if (checkLocalValue) {
-        localStorage.removeItem("Mis_Gifos_Was_Clicked");
+        localStorage.setItem("Mis_Gifos_Was_Clicked", false);
     }
 })
 

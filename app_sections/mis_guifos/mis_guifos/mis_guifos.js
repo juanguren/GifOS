@@ -28,11 +28,10 @@ let gifBox = document.querySelector(".create-container");
 
 let hideGifBox = () =>{
     let misGifosClick = localStorage.getItem("Mis_Gifos_Was_Clicked");
-    console.log(misGifosClick);
-    if (misGifosClick) {
-        gifBox.style.display = "none";
-    } else{
-        console.log(`Button "Crear GIFS" selected`);
+    if (misGifosClick === "true") {
+        gifBox.classList.add("hide");
+    } else if (misGifosClick === "false") {
+        gifBox.classList.remove("hide");
     }
 }
 

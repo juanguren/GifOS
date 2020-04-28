@@ -39,6 +39,10 @@
     width: 70%; /* 684px; */
 }
 
+.hide{
+    display: none;
+}
+
 .create-container h5{
     font-family: var(--fontBold);
     font-size: 14px;
