@@ -110,7 +110,18 @@ function dayChange() {
     themeChange = false;
 }
 
-// ====== "Mis Gifos - Link to page section"
+// ====== "Crear GIFS" - Link to page section
+
+let btnCreateGif = document.getElementById("btn-create-gif");
+
+btnCreateGif.addEventListener("click", () =>{
+    let checkLocalValue = localStorage.getItem("Mis_Gifos_Was_Clicked");
+    if (checkLocalValue) {
+        localStorage.removeItem("Mis_Gifos_Was_Clicked");
+    }
+})
+
+// ====== "Mis Gifos" - Link to (modifyied) page section
 
 let myGifs = document.getElementById("myGifs");
 
