@@ -254,6 +254,18 @@ html{
     width: 100%;
 }
 
+.trendGif:hover{
+    border: 1px solid var(--fontColor);
+}
+
+.hover-rectangle{ /* Appendable class */
+    width: 100%;
+    height: 10px;
+    background-color: #284F99;
+    top: 100%;
+    display: none; 
+}
+
 /* SECTION MAIN - GIF Search Results*/
 
 .gif-results{
