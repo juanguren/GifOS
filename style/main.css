@@ -163,7 +163,7 @@ html{
     margin-top: 1.5rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .gif{
@@ -234,6 +234,7 @@ html{
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: .5em;
 }
 
 .gif-span1{ /* TODO Appendable class */
@@ -246,10 +247,6 @@ html{
 
 .gif-span3{
     grid-column-start: span 3;
-}
-
-.gif-trends > img{
-    border: solid 1.5px black;
 }
 
 .trendGif{
