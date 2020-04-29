@@ -311,8 +311,10 @@ async function searchGIF(e) {
  */
 
 function createGifsOnDemand(data) {
-    trendsSection.style.display = "none";
+        trendsSection.style.display = "none";
         let resultNodeList = [];
+        console.log(searchDiv);
+        searchDiv.innerHTML = ""; // Cleans inner code to prevent multiple results appending one after the other
         for(i in data){
             let resultsUrl = data[i].images.fixed_height_downsampled.url
             let img = document.createElement("img");
