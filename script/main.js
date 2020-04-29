@@ -313,7 +313,7 @@ async function searchGIF(e) {
 
         const resultsAll = res.data;
         createGifsOnDemand(resultsAll); // GIF creator function
-        
+        saveQuery("Search History", searchQuery);
     }
 }
 
@@ -422,7 +422,7 @@ function deleteNewRandomGifs(closeButtons) {
 }
 
 /**
- * // ================ Event function for searches based on GIfs created after deleting one of the originals =============
+ * // ================ Searches based on GIfs created after deleting one of the originals =============
  * 
  * @param {Node List} buttons 
  */
@@ -440,14 +440,15 @@ function searchByNewGif(buttons) {
                     searchResultTag.innerText = textChild.toUpperCase();
                     searchResultTag.style.color = "crimson";
                     createGifsOnDemand(query);
+                    saveQuery("Search History", textChild);
                 })
         })
     })
 }
 
-// Discover More ("Ver Mas" buttons)
+// ============= Searches based on the four (4) original GIFs appended to the DOM =================
 
-// TODO Change fetch url and leave it after 
+// TODO Sustainable alternative to setTimeout (async or promise)
 setTimeout(() => {
     verMasBtns.forEach((button) =>{
         button.addEventListener("click", (e) =>{
@@ -463,6 +464,7 @@ setTimeout(() => {
                     searchResultTag.style.color = "crimson";
                     let query = data.data;
                     createGifsOnDemand(query);
+                    saveQuery("Search History", searchQuery);
             })
         })
     });
