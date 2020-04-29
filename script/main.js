@@ -184,6 +184,19 @@ function activateType(e) {
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 
+// This function saves search queries
+let savedSearches = [];
+function saveQuery(name, value) {
+    let existing = JSON.parse(sessionStorage.getItem(name));
+    if (existing) {
+        existing.unshift(value);
+        sessionStorage.setItem(name, JSON.stringify(existing));
+    } else{
+        savedSearches.push(value);
+        sessionStorage.setItem(name, JSON.stringify(savedSearches));
+    }
+}
+
 //============ GIF SUGGESTIONS (4) =========================
 
 let images = document.querySelectorAll(".gif-image");
@@ -259,7 +272,6 @@ let suggestedQuery;
 
 textAI.forEach((prediction) =>{
     prediction.addEventListener("click", (e) =>{
-        console.log(e.target.innerText);
         suggestedQuery = e.target.innerText;
         let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${suggestedQuery}&limit=16&offset=0&rating=G&lang=es`)
             .then(data => data.json())
@@ -272,6 +284,7 @@ textAI.forEach((prediction) =>{
                 searchResultTag.style.color = "crimson";
 
                 createGifsOnDemand(predictionResults); // GIF creator function
+                saveQuery("Search History", suggestedQuery);
             })
     })
 })
