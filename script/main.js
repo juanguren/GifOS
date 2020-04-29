@@ -313,8 +313,8 @@ async function searchGIF(e) {
 function createGifsOnDemand(data) {
         trendsSection.style.display = "none";
         let resultNodeList = [];
-        console.log(searchDiv);
         searchDiv.innerHTML = ""; // Cleans inner code to prevent multiple results appending one after the other
+        
         for(i in data){
             let resultsUrl = data[i].images.fixed_height_downsampled.url
             let img = document.createElement("img");
@@ -458,6 +458,7 @@ setTimeout(() => {
 // SECTION GIF TRENDS
 
 let gifTrendsDiv = document.querySelector(".gif-trends"); // "Gif Trends" div: Used below for the populating function too
+let newGifToggle = [];
 
 async function getTrends(url){
     let data = await fetch(url);
@@ -472,16 +473,31 @@ async function getTrends(url){
             newGif.classList.add("trendGif");
             gifTrendsDiv.appendChild(newGif);
             gifTrendsAll = document.querySelectorAll(".trendGif");
+
+            newGifToggle.push(newGif); // Save DOM img´s for the toggle function above
         }
-        let gifTrendsArray = Array.from(gifTrendsAll);
+        gifTrendsArray = Array.from(gifTrendsAll);
         // How to make this 3 recurrent?
         gifTrendsArray[4].classList.add("gif-span1");
         gifTrendsArray[9].classList.add("gif-span2");
         gifTrendsArray[14].classList.add("gif-span3");
+
+        toggleOver();
     }
 }
 
 getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
-// Trend Hashtag Toggle
 
-let trendsToggle = document.querySelectorAll(".trendGif"); // Why won´t querySelectorAll work?
+
+// ========================= Trend Hashtag Toggle =====================
+
+function toggleOver() {
+    newGifToggle.forEach((gif) =>{
+        gif.addEventListener("mouseover", () =>{
+            let newDiv = document.createElement("div");
+            newDiv.classList.add("hover-rectangle");
+            let hoverRectangle = document.querySelectorAll(".hover-rectangle");
+            //gifTrendsDiv.appendChild(newDiv);
+        })
+    })
+}
