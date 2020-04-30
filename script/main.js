@@ -191,10 +191,51 @@ function saveQuery(name, value) {
     if (existing) {
         existing.unshift(value);
         sessionStorage.setItem(name, JSON.stringify(existing));
+        postHistory();
     } else{
         savedSearches.push(value);
         sessionStorage.setItem(name, JSON.stringify(savedSearches));
+        postHistory();
     }
+}
+
+// This function appends those queries ☝️ to the DOM (Search history)
+
+function postHistory() {
+    let history = JSON.parse(sessionStorage.getItem("Search History"));
+    let uniqueSearch = new Set();
+
+    let divHistory = document.querySelector(".search-history");
+    let alertMessage = document.querySelector("#history-alertMessage");
+    for(i in history){
+        uniqueSearch.add(history[i]);
+    }
+    if (history.length > 8) {
+        alertMessage.innerText = "Ouch! This app only saves 9 search results";
+        alertMessage.style.color = "crimson";            
+        setTimeout(() => {
+            alert.style.display = "none";         
+        }, 3000);
+    } else{
+        let p = document.createElement("p");
+        p.innerText = history[0];
+        console.log(p);
+        console.log(history.length);
+        let hashtag = "#";
+        let final = hashtag.concat(history[0]);
+        let buttons = document.createElement("button");
+        buttons.classList.add("button-history");
+        buttons.innerText = final;
+        divHistory.appendChild(buttons);
+    }
+    /*for(let item of uniqueSearch){
+        let hashtag = "#";
+        let final = hashtag.concat(item);
+        let buttons = document.createElement("button");
+        buttons.classList.add("button-history");
+        buttons.innerText = final;
+        divHistory.appendChild(buttons);
+    }*/
 }
 
 //============ GIF SUGGESTIONS (4) =========================
@@ -285,12 +326,14 @@ textAI.forEach((prediction) =>{
 
                 createGifsOnDemand(predictionResults); // GIF creator function
                 saveQuery("Search History", suggestedQuery);
-            })
+            }).catch((err) =>{
+                return err;
+            });
     })
 })
 
 /**
- * ============= Normal Search Results (16)=========================
+ * ============= Search Results by main Input =========================
 */
 
 searchForm.addEventListener("submit", searchGIF);
@@ -502,7 +545,6 @@ async function getTrends(url){
 }
 
 getTrends(`https://api.giphy.com/v1/gifs/trending?api_key=${key}&limit=16&rating=G`); 
-
 
 // ========================= Trend Hashtag Toggle =====================
 

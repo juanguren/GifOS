@@ -59,7 +59,7 @@ html{
     font-size: 14px;
 }
 
-/* SECTION Some ppendable classes */
+/* SECTION Some appendable classes */
 
 .not-show {display: none;}
 
@@ -115,6 +115,26 @@ html{
     margin-right: 10px;
 }
 
+/* Search History */
+
+.search-history{
+    display: flex;
+}
+
+.button-history{ /* appendable class */
+    background: #4180F6;
+    border: 1px solid #4C2F99;
+    box-shadow: inset -2px -2px 0 0 #284F99, inset 2px 2px 0 0 #FFFFFF;
+    font-family: var(--fontRegular);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 18px;
+    padding: .5em 1em;
+    cursor: pointer;
+    margin: 5px;
+}
+
 /* Search Toggle (start)*/
 
 .search-toggle{
@@ -127,7 +147,11 @@ html{
     display: none;
 }
 
-.search-toggle > button{
+.search-toggle button{
+    margin: 5px;
+    background: #F0F0F0;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
     text-align: start;
     padding: .5rem;
     width: 84%;
@@ -136,15 +160,8 @@ html{
     cursor: pointer;
 }
 
-.search-toggle button{
-    margin: 5px;
-    background: #F0F0F0;
-    border: 1px solid #808080;
-    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
-}
-
 .search-toggle button:hover{
-    border: 1px solid #110038;
+    border: 1px solid var(--fontColor);
 }
 
 /* Search Toggle (end) */
