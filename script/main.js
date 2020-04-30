@@ -203,13 +203,9 @@ function saveQuery(name, value) {
 
 function postHistory() {
     let history = JSON.parse(sessionStorage.getItem("Search History"));
-    let uniqueSearch = new Set();
 
     let divHistory = document.querySelector(".search-history");
     let alertMessage = document.querySelector("#history-alertMessage");
-    for(i in history){
-        uniqueSearch.add(history[i]);
-    }
     if (history.length > 8) {
         alertMessage.innerText = "Ouch! This app only saves 9 search results";
         alertMessage.style.color = "crimson";            
@@ -228,14 +224,6 @@ function postHistory() {
         buttons.innerText = final;
         divHistory.appendChild(buttons);
     }
-    /*for(let item of uniqueSearch){
-        let hashtag = "#";
-        let final = hashtag.concat(item);
-        let buttons = document.createElement("button");
-        buttons.classList.add("button-history");
-        buttons.innerText = final;
-        divHistory.appendChild(buttons);
-    }*/
 }
 
 //============ GIF SUGGESTIONS (4) =========================
