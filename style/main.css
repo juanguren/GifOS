@@ -232,7 +232,6 @@ html{
     grid-area: gif;
     width: 100%;
     height: 200px;
-    border: solid lightslategray 1px;
 }
 
 .btn-close{
@@ -289,15 +288,16 @@ html{
     margin-top: 1em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-}
-
-.gif-results > img{
-    border: solid 1.5px black;
+    gap: .5em;
 }
 
 .searchGif{
     height: 200px;
     width: 100%;
+}
+
+.searchGif:hover{
+    border: 1px solid var(--fontColor);
 }
 
 .searchInactive {
