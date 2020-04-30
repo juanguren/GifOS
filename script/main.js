@@ -183,8 +183,9 @@ function activateType(e) {
 //  NOTE GIPHYs API AHEAD:
 
 const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
+let searchResultTag = document.getElementById("searchTag");
 
-// This function saves search queries
+// Saves search queries
 let savedSearches = [];
 function saveQuery(name, value) {
     let existing = JSON.parse(sessionStorage.getItem(name));
@@ -199,7 +200,8 @@ function saveQuery(name, value) {
     }
 }
 
-// This function appends those queries ☝️ to the DOM (Search history)
+// Aappends those queries ☝️ to the DOM (Search history)
+let savedHistory;
 
 function postHistory() {
     let history = JSON.parse(sessionStorage.getItem("Search History"));
@@ -215,15 +217,40 @@ function postHistory() {
     } else{
         let p = document.createElement("p");
         p.innerText = history[0];
-        console.log(p);
-        console.log(history.length);
         let hashtag = "#";
         let final = hashtag.concat(history[0]);
         let buttons = document.createElement("button");
         buttons.classList.add("button-history");
         buttons.innerText = final;
         divHistory.appendChild(buttons);
+        savedHistory = document.querySelectorAll(".button-history");
+        searchHistory();
     }
+}
+
+/**
+ * ================= Searches based on previously saved queries ==================
+ */
+
+function searchHistory() {
+    savedHistory.forEach((button) =>{
+        button.addEventListener("click", lookUp);
+        async function lookUp(params) {
+            let searchText = button.innerText;
+            let query = searchText.replace("#", "");
+            
+            let data = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${query}&limit=16&offset=0&rating=G&lang=es`);
+            let res = await data.json();
+            let response = res.data;
+
+            location.href = "#search-scroll";
+
+            searchResultTag.innerText = query.toUpperCase();
+            searchResultTag.style.color = "crimson";
+
+            createGifsOnDemand(response);
+        }
+    })
 }
 
 //============ GIF SUGGESTIONS (4) =========================
@@ -292,7 +319,6 @@ async function gifSearch(e) {
 
 let trendsSection = document.querySelector("#trends");
 let searchDiv = document.querySelector("#search");
-let searchResultTag = document.getElementById("searchTag");
 let suggestedQuery;
 
 /**
