@@ -39,3 +39,28 @@ hideGifBox();
 
 // ======================= Show "create GIF box" based on "Crear GIFS" click ==========================
 
+let videoTest = document.getElementById("videoTest");
+
+const constraints = {
+    audio: false,
+    video: {
+        height: {max: 480}
+    }
+}
+
+async function getMedia(constraints) {
+    let stream = null;
+  
+    try {
+      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      /* use the stream */
+      videoTest.srcObject = stream;
+      videoTest.play();
+      
+    } catch(err) {
+      /* handle the error */
+      console.log(err);
+    }
+}
+
+getMedia(constraints);
