@@ -99,24 +99,87 @@
     cursor: pointer;
 }
 
-#btn-cancel{
+.btn-cancel{
     background: #FFF4FD;
-    border: 1px solid #110038;
+    border: 1px solid var(--fontColor);
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
-#btn-cancel:hover{
+.btn-cancel:hover{
     border-style: dotted dotted;
     outline:solid var(--fontColor) .5px;
 }
 
-#btn-start{
+.btn-start{
     background: #F7C9F3;
     border: 1px solid var(--fontColor);
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
-#btn-start:hover{
+.btn-start:hover{
+    background: #E6BBE2;
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
+}
+
+/* GIF CAPTURE - SECOND SCREEN */
+
+.create-container1{
+    margin: auto;
+    margin-top: 4em;
+    width: 70%; /* 684px; */
+}
+.create-container1 h5{
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    padding: 2px;
+}
+
+.recordVideo{
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    padding: 1em;
+}
+
+#videoTest{
+    width: 100%;
+}
+
+.button-container1{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.button-container1 .btn-capture{
+    padding: .5rem 30px;
+    cursor: pointer;
+}
+
+.btn-camera{
+    padding: .5rem 18px;
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    background: url(../../../assets/camera.svg) no-repeat center;
+    background-size: 45%;
+}
+
+.btn-camera:hover{
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
+}
+
+.btn-capture{
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+.btn-capture:hover{
     background: #E6BBE2;
     border-style: dotted dotted;
     outline:solid var(--fontColor) .5px;
