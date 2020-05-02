@@ -127,15 +127,30 @@
 .create-container1{
     margin: auto;
     margin-top: 4em;
-    width: 70%; /* 684px; */
+    width: 50%; /* 684px; */
 }
-.create-container1 h5{
+
+.box-instructions{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    padding: 2px;
+    display: grid;
+    grid-template-areas: 
+    "title button";
+}
+
+.box-instructions h5{
     font-family: var(--fontBold);
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
-    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
-    padding: 2px;
+    grid-area: title;
+}
+
+.box-instructions img{
+    grid-area: button;
+    justify-self: end;
+    margin-right: 3px;
+    cursor: pointer;
 }
 
 .recordVideo{
@@ -151,7 +166,7 @@
 .button-container1{
     display: flex;
     justify-content: flex-end;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .button-container1 .btn-capture{

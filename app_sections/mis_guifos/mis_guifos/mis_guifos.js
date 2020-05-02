@@ -37,7 +37,18 @@ let hideGifBox = () =>{
 
 hideGifBox();
 
-// ======================= Show "create GIF box" based on "Crear GIFS" click ==========================
+// ======= Hide "create GIF box" based on the user´s click on "Comenzar"
+
+let openCamera = document.querySelector(".btn-start");
+let recordVideo = document.querySelector(".create-container1");
+
+openCamera.addEventListener("click", () =>{
+    gifBox.classList.add("hide");
+    if (gifBox.classList.contains("hide")) {
+        recordVideo.classList.remove("hide");
+        getMedia(constraints);
+    }
+});
 
 let videoTest = document.getElementById("videoTest");
 
@@ -62,5 +73,3 @@ async function getMedia(constraints) {
       console.log(err);
     }
 }
-
-getMedia(constraints);
