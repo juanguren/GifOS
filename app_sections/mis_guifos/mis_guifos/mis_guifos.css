@@ -1,13 +1,53 @@
 
-/*
+/* ====== Global Styling (Module for creating GIFS) ======= */
 
-:root{
-    --fontRegular: font-family: 'Chakra Petch', regular;
-    --fontBold: font-family: 'Chakra Petch', bold;
-    --fontColor: #110038;
+.create-container1{
+    margin: auto;
+    margin-top: 4em;
+    width: 50%; /* 684px; */
 }
 
-*/
+.box-instructions{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    padding: 2px;
+    display: grid;
+    grid-template-areas: 
+    "title button";
+}
+
+.box-instructions h5{
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    grid-area: title;
+}
+
+.box-instructions img{
+    grid-area: button;
+    justify-self: end;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.recordVideo{
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    padding: 1em;
+}
+
+#videoTest{
+    width: 100%;
+}
+
+.button-container1{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* ====== Global Styling (Module for creating GIFS) ======= */
+
 
 .myGifs{
     margin-top: 3rem;
@@ -124,51 +164,6 @@
 
 /* GIF CAPTURE - SECOND SCREEN */
 
-.create-container1{
-    margin: auto;
-    margin-top: 4em;
-    width: 50%; /* 684px; */
-}
-
-.box-instructions{
-    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
-    padding: 2px;
-    display: grid;
-    grid-template-areas: 
-    "title button";
-}
-
-.box-instructions h5{
-    font-family: var(--fontBold);
-    font-size: 14px;
-    color: #FFFFFF;
-    letter-spacing: 0;
-    grid-area: title;
-}
-
-.box-instructions img{
-    grid-area: button;
-    justify-self: end;
-    margin-right: 3px;
-    cursor: pointer;
-}
-
-.recordVideo{
-    background: #E6E6E6;
-    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
-    padding: 1em;
-}
-
-#videoTest{
-    width: 100%;
-}
-
-.button-container1{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
-}
-
 .button-container1 .btn-capture{
     padding: .5rem 30px;
     cursor: pointer;
@@ -196,6 +191,38 @@
 
 .btn-capture:hover{
     background: #E6BBE2;
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
+}
+
+/* GIF CAPTURING - THIRD SCREEN */
+
+.btn-lens{
+    padding: .5rem 18px;
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    background: url(../../../assets/recording.svg) no-repeat center;
+    background-size: 45%;
+    background-color:#FF6161;;
+}
+
+.btn-lens:hover{
+    border-style: dotted dotted;
+    outline:solid var(--fontColor) .5px;
+}
+
+.btn-stop{
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    padding: .5rem 30px;
+    cursor: pointer;
+    background: #FF6161;
+    color: #FFFFFF;
+}
+
+.btn-stop:hover{
     border-style: dotted dotted;
     outline:solid var(--fontColor) .5px;
 }
