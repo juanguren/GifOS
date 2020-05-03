@@ -56,6 +56,7 @@ let videoTest = document.getElementById("videoTest");
 let videoCapture = document.querySelector(".btn-capture");
 let camera = document.querySelector(".btn-camera");
 let img = document.createElement("img");
+let savedGifs = [];
 
 class sessionGifs{
     constructor(id, length, src){
@@ -74,7 +75,7 @@ const constraints = {
 
 async function getMedia(constraints) {
     let stream = null;
-  
+    let gifId = 0;
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
         /* use the stream */
@@ -91,9 +92,14 @@ async function getMedia(constraints) {
         camera.addEventListener("click", () =>{
             recorder.stop(function(blob) {
             console.log(blob);
-            let gifUrl = URL.createObjectURL(blob);
-            console.log(gifUrl);
-            recordVideo.appendChild(img);
+            if (blob) {
+                gifId++;
+                let gifUrl = URL.createObjectURL(blob);
+                
+                let gifs = new sessionGifs(gifId, "", gifUrl);
+                savedGifs.push(gifs);
+                console.log(gifs);
+            }
         });
     })
       
