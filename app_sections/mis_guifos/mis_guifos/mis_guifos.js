@@ -40,7 +40,7 @@ hideGifBox();
 // ======= Hide "create GIF box" based on the user´s click on "Comenzar"
 
 let openCamera = document.querySelector(".btn-start");
-let recordVideo = document.querySelector(".create-container1");
+let recordVideo = document.querySelector(".menu1");
 
 openCamera.addEventListener("click", () =>{
     gifBox.classList.add("hide");
@@ -98,7 +98,8 @@ async function getMedia(constraints) {
                 
                 let gifs = new sessionGifs(gifId, "", gifUrl);
                 savedGifs.push(gifs);
-                console.log(gifs);
+            } else{
+                console.log("The video wasn´t saved correctly");
             }
         });
     })
