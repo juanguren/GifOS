@@ -129,7 +129,5 @@ function changeScreenToCapture(button){
     boxTitle.innerText = "Capturando Tu Guifo";
     button.innerText = "Listo";
     timerDiv.classList.remove("hide");
-
-    btnStop = button;
 }
 
