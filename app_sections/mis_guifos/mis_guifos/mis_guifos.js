@@ -50,7 +50,20 @@ openCamera.addEventListener("click", () =>{
     }
 });
 
+// ========== Open the camera and display source to the DOM ============
+
 let videoTest = document.getElementById("videoTest");
+let videoCapture = document.querySelector(".btn-capture");
+let camera = document.querySelector(".btn-camera");
+let img = document.createElement("img");
+
+class sessionGifs{
+    constructor(id, length, src){
+        this.id = id;
+        this.length = length;
+        this.src = src;
+    }
+}
 
 const constraints = {
     audio: false,
@@ -63,13 +76,36 @@ async function getMedia(constraints) {
     let stream = null;
   
     try {
-      stream = await navigator.mediaDevices.getUserMedia(constraints);
-      /* use the stream */
-      videoTest.srcObject = stream;
-      videoTest.play();
+        stream = await navigator.mediaDevices.getUserMedia(constraints);
+        /* use the stream */
+        videoTest.srcObject = stream;
+        videoTest.play();
+
+        recorder = new GifRecorder(stream, {
+            frameRate: 1,
+            quality: 10
+        });
+        videoCapture.addEventListener("click", () =>{
+            recorder.record();
+        });
+        camera.addEventListener("click", () =>{
+            recorder.stop(function(blob) {
+            console.log(blob);
+            let gifUrl = URL.createObjectURL(blob);
+            console.log(gifUrl);
+            recordVideo.appendChild(img);
+        });
+    })
       
     } catch(err) {
-      /* handle the error */
-      console.log(err);
+        /* handle the error */
+        console.log(err);
+        gifBox.classList.remove("hide");
+        recordVideo.classList.add("hide");
     }
 }
+
+
+//============= Record video capture ================
+
+    
