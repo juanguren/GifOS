@@ -53,9 +53,10 @@ openCamera.addEventListener("click", () =>{
 // ========== Open the camera and display source to the DOM ============
 
 let videoTest = document.getElementById("videoTest");
-let videoCapture = document.querySelector(".btn-capture");
+let videoRecord = document.getElementById("videoRecord");
+let btnCapture = document.querySelector(".btn-capture");
+let btnStop = document.querySelector(".btn-stop");
 let camera = document.querySelector(".btn-camera");
-let img = document.createElement("img");
 let savedGifs = [];
 
 class sessionGifs{
@@ -74,8 +75,9 @@ const constraints = {
 }
 
 async function getMedia(constraints) {
-    let stream = null;
     let gifId = 0;
+    let stream = null;
+    let recording = false;
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
         /* use the stream */
@@ -86,10 +88,11 @@ async function getMedia(constraints) {
             frameRate: 1,
             quality: 10
         });
-        videoCapture.addEventListener("click", () =>{
-            recorder.record();
+        btnCapture.addEventListener("click", (e) =>{
+            recorder.record(); // Starts recording
+            changeScreenToCapture(e.target); // Changes style of window
         });
-        camera.addEventListener("click", () =>{
+        btnStop.addEventListener("click", () =>{
             recorder.stop(function(blob) {
             console.log(blob);
             if (blob) {
@@ -115,4 +118,18 @@ async function getMedia(constraints) {
 
 //============= Record video capture ================
 
-    
+function changeScreenToCapture(button){
+    let boxTitle = document.querySelector(".box-instructions h5");
+    let timerDiv = document.querySelector(".record-timer");
+
+    button.classList.add("hide");
+    btnStop.classList.remove("hide");
+    camera.classList.replace("btn-camera", "btn-lens");
+
+    boxTitle.innerText = "Capturando Tu Guifo";
+    button.innerText = "Listo";
+    timerDiv.classList.remove("hide");
+
+    btnStop = button;
+}
+

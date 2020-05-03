@@ -197,6 +197,10 @@
 
 /* GIF CAPTURING - THIRD SCREEN */
 
+#videoRecord{
+    width: 100%;
+}
+
 .btn-lens{
     padding: .5rem 18px;
     background: #F7C9F3;
@@ -225,4 +229,15 @@
 .btn-stop:hover{
     border-style: dotted dotted;
     outline:solid var(--fontColor) .5px;
+}
+
+.record-timer{
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+    width: fit-content;
+    height: fit-content;
+    padding: .5em 1.5em;
+    position: relative;
+    top: 50px;
 }
