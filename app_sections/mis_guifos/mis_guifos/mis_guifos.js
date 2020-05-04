@@ -94,8 +94,7 @@ async function getMedia(constraints) {
         });
         btnStop.addEventListener("click", () =>{
             recorder.stop(function(blob) {
-            console.log(blob);
-            if (blob) {
+            if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 gifId++;
                 let gifUrl = URL.createObjectURL(blob);
                 
@@ -125,9 +124,9 @@ function changeScreenToCapture(button){
     button.classList.add("hide");
     btnStop.classList.remove("hide");
     camera.classList.replace("btn-camera", "btn-lens");
+    timerDiv.classList.remove("hide");
 
     boxTitle.innerText = "Capturando Tu Guifo";
     button.innerText = "Listo";
-    timerDiv.classList.remove("hide");
 }
 
