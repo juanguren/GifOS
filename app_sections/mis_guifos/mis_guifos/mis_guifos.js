@@ -37,7 +37,10 @@ let hideGifBox = () =>{
 
 hideGifBox();
 
-// ======= Hide "create GIF box" based on the user´s click on "Comenzar"
+/* 
+* ======= Hide "create GIF box" based on the user´s click on "Comenzar"
+* and display the "Video Testing" Box, the one capturing the userMedia
+*/
 
 let openCamera = document.querySelector(".btn-start");
 let recordVideo = document.querySelector(".menu1");
@@ -50,6 +53,16 @@ openCamera.addEventListener("click", () =>{
     }
 });
 
+// =============== Close the "Video Testing" Box based on the user´s click on the close button ============
+
+let btnCloseTest = document.querySelector(".btn-close");
+
+btnCloseTest.addEventListener("click", () =>{
+    recordVideo.classList.add("hide");
+    gifBox.classList.remove("hide");
+    stream.stop();
+})
+
 // ========== Open the camera and display source to the DOM ============
 
 let videoTest = document.getElementById("videoTest");
@@ -57,6 +70,7 @@ let videoRecord = document.getElementById("videoRecord");
 let btnCapture = document.querySelector(".btn-capture");
 let btnStop = document.querySelector(".btn-stop");
 let camera = document.querySelector(".btn-camera");
+let stream = null;
 let savedGifs = [];
 
 class sessionGifs{
@@ -76,7 +90,7 @@ const constraints = {
 
 async function getMedia(constraints) {
     let gifId = 0;
-    let stream = null;
+    
     let recording = false;
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -84,20 +98,30 @@ async function getMedia(constraints) {
         videoTest.srcObject = stream;
         videoTest.play();
 
-        recorder = new GifRecorder(stream, {
+        let recorder = new GifRecorder(stream, {
             frameRate: 1,
             quality: 10
         });
-        btnCapture.addEventListener("click", (e) =>{
+        btnCapture.addEventListener("click", async (e) =>{
             recorder.record(); // Starts recording
-            changeScreenToCapture(e.target); // Changes style of window
+            await new Promise((res, rej) => {
+                if (recorder) {
+                    res("OK");
+                }
+                else {
+                    rej("Video recording couldn´t initialize");
+                }
+            }).then((res) =>{
+                console.log(res);
+                changeScreenToCapture(e.target); // Changes style of window
+            }).catch(rej => console.log(rej));
         });
         btnStop.addEventListener("click", () =>{
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 gifId++;
                 let gifUrl = URL.createObjectURL(blob);
-                
+                console.log(blob);
                 let gifs = new sessionGifs(gifId, "", gifUrl);
                 savedGifs.push(gifs);
             } else{
@@ -126,7 +150,7 @@ function changeScreenToCapture(button){
     camera.classList.replace("btn-camera", "btn-lens");
     timerDiv.classList.remove("hide");
 
-    boxTitle.innerText = "Capturando Tu Guifo";
+    boxTitle.innerText = "Capturando Tu Guifo...";
     button.innerText = "Listo";
 }
 
