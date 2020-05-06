@@ -79,10 +79,6 @@
     width: 70%; /* 684px; */
 }
 
-.hide{
-    display: none;
-}
-
 .create-container h5{
     font-family: var(--fontBold);
     font-size: 14px;
@@ -287,8 +283,26 @@
 }
 
 .gif-play{
+    display: flex;
+}
+
+#btn-play{
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    padding: 3px 8px;
+    height: fit-content;
+}
+
+.gif-progress{
     background: #B4B4B4;
     box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+    flex-basis: 80%;
+    height: fit-content;
+}
+
+.gif-progress span{
+    background: #999999;
 }
 
 .overview-buttons{
@@ -315,3 +329,9 @@
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
 }
 
+
+/* Appendable */
+.hide{
+    display: none;
+}
+/* Appendable */
