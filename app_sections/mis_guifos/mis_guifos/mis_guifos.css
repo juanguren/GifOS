@@ -241,3 +241,77 @@
     position: relative;
     top: 50px;
 }
+
+/* GIF OVERVIEW - FOURTH SCREEN */
+
+.overview-container{
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    margin: auto;
+    margin-top: 4em;
+    width: 70%; /* 684px; */
+}
+
+.overview-title{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+}
+
+.overview-title h5{
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.overview-content{
+    padding: 1em;
+}
+
+#overview-gif{
+    width: 100%;
+}
+
+.overview-controls{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2em;
+}
+
+.gif-duration{
+    background: #FFFFFF;
+    border: 1px solid #979797;
+    box-shadow: inset -2px -2px 0 0 #E6E6E6, inset 2px 2px 0 0 #000000;
+    width: fit-content;
+    height: fit-content;
+    padding: .5em 1.5em;
+}
+
+.gif-play{
+    background: #B4B4B4;
+    box-shadow: inset 2px 2px 0 0 #FFFCFC, inset -2px -2px 0 0 #000000;
+}
+
+.overview-buttons{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.overview-buttons button{
+    padding: .5rem 30px;
+    margin: 0 .5em;
+    cursor: pointer;
+}
+
+#repeat-capture{
+    background: #FFF4FD;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
+#uploadGif{
+    background: #F7C9F3;
+    border: 1px solid var(--fontColor);
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+}
+
