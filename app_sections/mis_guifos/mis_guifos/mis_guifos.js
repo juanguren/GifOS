@@ -56,6 +56,7 @@ openCamera.addEventListener("click", () =>{
 // =============== Close the "Video Testing" Box based on the user´s click on the close button ============
 
 let btnCloseTest = document.querySelector(".btn-close");
+let btnCloseCapture = document.querySelector(".btn-close1");
 
 btnCloseTest.addEventListener("click", () =>{
     recordVideo.classList.add("hide");
@@ -74,9 +75,9 @@ let stream = null;
 let savedGifs = [];
 
 class sessionGifs{
-    constructor(id, length, src){
+    constructor(id, lengthx, src){
         this.id = id;
-        this.length = length;
+        this.lengthx = lengthx;
         this.src = src;
     }
 }
@@ -113,6 +114,8 @@ async function getMedia(constraints) {
                 }
             }).then((res) =>{
                 console.log(res);
+                btnCloseCapture.classList.remove("hide");
+                btnCloseTest.classList.add("hide");
                 changeScreenToCapture(e.target); // Changes style of window
             }).catch(rej => console.log(rej));
         });
@@ -139,7 +142,7 @@ async function getMedia(constraints) {
 }
 
 
-//============= Record video capture ================
+//============= Change to the window that captures the users GIF ================
 
 function changeScreenToCapture(button){
     let boxTitle = document.querySelector(".box-instructions h5");
