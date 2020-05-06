@@ -57,12 +57,25 @@ openCamera.addEventListener("click", () =>{
 
 let btnCloseTest = document.querySelector(".btn-close");
 let btnCloseCapture = document.querySelector(".btn-close1");
+let gifRecordBox = document.querySelector(".create-container1");
+let boxTitle = document.querySelector(".box-instructions h5");
+let timerDiv = document.querySelector(".record-timer");
 
 btnCloseTest.addEventListener("click", () =>{
     recordVideo.classList.add("hide");
     gifBox.classList.remove("hide");
     stream.stop();
-})
+});
+
+btnCloseCapture.addEventListener("click", () =>{
+    btnCapture.classList.remove("hide");
+    btnStop.classList.add("hide");
+    camera.classList.replace("btn-lens", "btn-camera");
+    timerDiv.classList.add("hide");
+
+    boxTitle.innerText = "Un Chequeo Antes de Empezar";
+    btnCapture.innerText = "Capturar";
+});
 
 // ========== Open the camera and display source to the DOM ============
 
@@ -145,9 +158,6 @@ async function getMedia(constraints) {
 //============= Change to the window that captures the users GIF ================
 
 function changeScreenToCapture(button){
-    let boxTitle = document.querySelector(".box-instructions h5");
-    let timerDiv = document.querySelector(".record-timer");
-
     button.classList.add("hide");
     btnStop.classList.remove("hide");
     camera.classList.replace("btn-camera", "btn-lens");
