@@ -102,9 +102,7 @@ const constraints = {
     }
 }
 
-async function getMedia(constraints) {
-    let gifId = 0;
-    
+async function getMedia(constraints){
     let recording = false;
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -129,17 +127,17 @@ async function getMedia(constraints) {
                 console.log(res);
                 btnCloseCapture.classList.remove("hide");
                 btnCloseTest.classList.add("hide");
+                
                 changeScreenToCapture(e.target); // Changes style of window
             }).catch(rej => console.log(rej));
         });
         btnStop.addEventListener("click", () =>{
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
-                gifId++;
                 let gifUrl = URL.createObjectURL(blob);
                 console.log(blob);
-                let gifs = new sessionGifs(gifId, "", gifUrl);
-                savedGifs.push(gifs);
+
+                getGifOverview(gifUrl);
             } else{
                 console.log("The video wasn´t saved correctly");
             }
@@ -165,5 +163,31 @@ function changeScreenToCapture(button){
 
     boxTitle.innerText = "Capturando Tu Guifo...";
     button.innerText = "Listo";
+}
+
+//============= Change to the window that lets the user have an overview of the recorded GIF ================
+let gifOverview = document.querySelector(".overview-container");
+let gifId = 0;
+
+function getGifOverview(gifUrl){
+    new Promise((resolve, reject) =>{
+        if (gifUrl) {
+            resolve(gifUrl + " Is OK");
+        } else if(!gifUrl){
+            reject("Gif wasn´t recorded correctly");
+        }
+    }).then((ok) =>{
+        console.log(ok);
+        recordVideo.classList.add("hide");
+        stream.stop();
+    }).then(() =>{
+        gifId++;
+        let gifs = new sessionGifs(gifId, "", gifUrl);
+        savedGifs.push(gifs);
+
+        gifOverview.classList.remove("hide");
+        let gifOverviewImage = document.getElementById("overview-gif");
+        gifOverviewImage.src = gifUrl;
+    }).catch(err => console.log(err));
 }
 
