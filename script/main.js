@@ -9,21 +9,29 @@
  *              ! Hover  
  */
 
+
+
  // ============ Number of app visits (Accumulator) ==================
 
- let pageVisitCount = 1;
+function pageVisits() {
+    let getPageCount = localStorage.getItem("load");
+    if (getPageCount) {
+        getPageCount++;
+        localStorage.setItem("load", getPageCount);
+    } else{
+    let pageVisitCount = 1;
+    localStorage.setItem("load", pageVisitCount);
+    }
+    showPageVisits();
+}
+pageVisits();
 
- function pageVisits() {
-     let getPageCount = localStorage.getItem("load");
-     if (getPageCount) {
-         getPageCount++;
-         localStorage.setItem("load", getPageCount);
-     } else{
-         localStorage.setItem("load", pageVisitCount);
-     }
- }
- pageVisits();
+function showPageVisits() {
+    let data = document.getElementById("visit-count");
+    let pageLoads = localStorage.getItem("load");
 
+    data.innerText = pageLoads;
+}
 
 // SECTION TOOL BAR EVENTS
 
