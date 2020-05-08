@@ -135,7 +135,6 @@ async function getMedia(constraints){
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
-                console.log(blob);
 
                 getGifOverview(gifUrl);
             } else{
@@ -180,7 +179,7 @@ function getGifOverview(gifUrl){
         console.log(ok);
         recordVideo.classList.add("hide");
         stream.stop();
-    }).then(() =>{
+
         gifId++;
         let gifs = new sessionGifs(gifId, "", gifUrl);
         savedGifs.push(gifs);
@@ -188,6 +187,20 @@ function getGifOverview(gifUrl){
         gifOverview.classList.remove("hide");
         let gifOverviewImage = document.getElementById("overview-gif");
         gifOverviewImage.src = gifUrl;
-    }).catch(err => console.log(err));
+    }).then(sendGifasBlob(gifUrl))
+      .catch(err => console.log(err));
+}
+
+function sendGifasBlob(blob) {
+    let newForm = new FormData();
+    newForm.append("df", "j");
+    newForm.append("file", blob);
+    let see = newForm.get("file");
+    
+    console.log(Array.from(newForm));
+
+    for(let i of newForm){
+        console.log(i);
+    }
 }
 
