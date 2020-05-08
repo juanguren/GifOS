@@ -9,6 +9,22 @@
  *              ! Hover  
  */
 
+ // ============ Number of app visits (Accumulator) ==================
+
+ let pageVisitCount = 1;
+
+ function pageVisits() {
+     let getPageCount = localStorage.getItem("load");
+     if (getPageCount) {
+         getPageCount++;
+         localStorage.setItem("load", getPageCount);
+     } else{
+         localStorage.setItem("load", pageVisitCount);
+     }
+ }
+ pageVisits();
+
+
 // SECTION TOOL BAR EVENTS
 
 // Theme Toggle
