@@ -74,9 +74,13 @@
 
 .upperBar-day h4{
     font-family: var(--fontRegular);
-    font-size: 12px;
+    font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
+}
+
+.upperBar-day h4 span{
+    font-size: 16px;
 }
 
 /* SECTION TOOL BAR */
