@@ -121,6 +121,7 @@ async function getMedia(constraints){
         videoTest.play();
 
         let recorder = new GifRecorder(stream, {
+            type: "gif",
             frameRate: 1,
             quality: 10
         });
@@ -145,8 +146,12 @@ async function getMedia(constraints){
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
+// TODO FILE
+                let newForm = new FormData();
+                newForm.append("file", blob);
 
                 getGifOverview(gifUrl);
+                sendGifAsBlob(newForm.get("file"));
             } else{
                 console.log("The video wasn´t saved correctly");
             }
@@ -197,20 +202,35 @@ function getGifOverview(gifUrl){
         gifOverview.classList.remove("hide");
         let gifOverviewImage = document.getElementById("overview-gif");
         gifOverviewImage.src = gifUrl;
-    }).then(sendGifAsBlob(gifUrl))
-      .catch(err => console.log(err));
+    }).catch(err => console.log(err));
 }
 
-function sendGifAsBlob(blob) {
-    let newForm = new FormData();
-    newForm.append("df", "j");
-    newForm.append("file", blob);
-    let see = newForm.get("file");
-    
-    console.log(Array.from(newForm));
+/**
+*  ============ Sends the generated form (.gif) to Giphy via POST method ===========
+* 
+* @param {File object} file 
+*/
 
-    for(let i of newForm){
-        console.log(i);
+const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
+
+let gifPOST = document.getElementById("uploadGif");
+
+gifPOST.addEventListener("click", sendGifAsBlob);
+
+async function sendGifAsBlob(file) {
+    const options = {
+        headers: new Headers(),
+        method: "POST",
+        mode: "cors",
+        body: file
+    }
+    try {
+        let data = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${key}`, options);
+        let response = await data.json();
+        console.log(response);
+        throw new Error("No")
+    } catch (error) {
+        console.log(error);
     }
 }
 
