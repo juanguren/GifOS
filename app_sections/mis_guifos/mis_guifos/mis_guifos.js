@@ -3,23 +3,10 @@
 
 function pageVisits() {
     let getPageCount = localStorage.getItem("load");
-    if (getPageCount) {
-        getPageCount++;
-        localStorage.setItem("load", getPageCount);
-    } else{
-        let pageVisitCount = 1;
-        localStorage.setItem("load", pageVisitCount);
-    }
-    showPageVisits();
+    let data = document.getElementById("visit-count");
+    data.innerText = getPageCount;
 }
 pageVisits();
-
-function showPageVisits() {
-    let data = document.getElementById("visit-count");
-    let pageLoads = localStorage.getItem("load");
-
-    data.innerText = pageLoads;
-}
 
 
 // SECTION TOOL BAR EVENTS
@@ -210,11 +197,11 @@ function getGifOverview(gifUrl){
         gifOverview.classList.remove("hide");
         let gifOverviewImage = document.getElementById("overview-gif");
         gifOverviewImage.src = gifUrl;
-    }).then(sendGifasBlob(gifUrl))
+    }).then(sendGifAsBlob(gifUrl))
       .catch(err => console.log(err));
 }
 
-function sendGifasBlob(blob) {
+function sendGifAsBlob(blob) {
     let newForm = new FormData();
     newForm.append("df", "j");
     newForm.append("file", blob);
