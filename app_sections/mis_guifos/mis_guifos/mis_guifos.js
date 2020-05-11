@@ -143,6 +143,7 @@ async function getMedia(constraints){
             }).catch(rej => console.log(rej));
         });
         btnStop.addEventListener("click", () =>{
+
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
@@ -151,7 +152,8 @@ async function getMedia(constraints){
                 newForm.append("file", blob);
 
                 getGifOverview(gifUrl);
-                sendGifAsBlob(newForm.get("file"));
+                //sendGifAsBlob(newForm.get("file"));
+                sendGifAsBlob(newForm);
             } else{
                 console.log("The video wasn´t saved correctly");
             }
@@ -218,17 +220,24 @@ let gifPOST = document.getElementById("uploadGif");
 gifPOST.addEventListener("click", sendGifAsBlob);
 
 async function sendGifAsBlob(file) {
+
+    let headers = new Headers();
+
     const options = {
-        headers: new Headers(),
+        //headers: headers,
         method: "POST",
-        mode: "cors",
+        //mode: "no-cors", // deals with redirecting to external resources coming from a core page/resource. no-cors: deactives that for communicating just with the local page.
         body: file
     }
     try {
         let data = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${key}`, options);
         let response = await data.json();
         console.log(response);
-        throw new Error("No")
+        if (response.ok) {
+            console.log("File uploaded succesfully");
+        } else{
+            throw new Error("NO");
+        }
     } catch (error) {
         console.log(error);
     }
