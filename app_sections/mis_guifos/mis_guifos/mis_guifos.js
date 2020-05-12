@@ -148,7 +148,7 @@ async function getMedia(constraints){
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
-// TODO FILE
+
                 newForm.append("file", blob);
 
                 getGifOverview(gifUrl);
@@ -236,11 +236,11 @@ async function sendGifAsForm() {
                 gifLoadsMessage.innerText = "";
             }, 3000);
             gifLoadsMessage.innerText = "Upload Exitoso!";
-            console.log(response.data);
-            /*
-            let gifs = new sessionGifs(gifId, "", gifUrl);
-        savedGifs.push(gifs);
-            */
+
+            let gifId = response.data.id;
+            let gifs = new sessionGifs(gifId, "", "");
+            savedGifs.push(gifs);
+            
         } else{
             throw new Error("NO");
         }
