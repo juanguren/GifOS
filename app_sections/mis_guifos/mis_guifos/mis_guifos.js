@@ -96,6 +96,7 @@ let btnStop = document.querySelector(".btn-stop");
 let camera = document.querySelector(".btn-camera");
 let stream = null;
 let savedGifs = [];
+let newForm = new FormData(); // Form capturing the generated Blob after stopping the video recording
 
 class sessionGifs{
     constructor(id, lengthx, src){
@@ -148,12 +149,9 @@ async function getMedia(constraints){
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
 // TODO FILE
-                let newForm = new FormData();
                 newForm.append("file", blob);
 
                 getGifOverview(gifUrl);
-                //sendGifAsBlob(newForm.get("file"));
-                sendGifAsBlob(newForm);
             } else{
                 console.log("The video wasn´t saved correctly");
             }
@@ -183,7 +181,6 @@ function changeScreenToCapture(button){
 
 //============= Change to the window that lets the user have an overview of the recorded GIF ================
 let gifOverview = document.querySelector(".overview-container");
-let gifId = 0;
 
 function getGifOverview(gifUrl){
     new Promise((resolve, reject) =>{
@@ -196,10 +193,6 @@ function getGifOverview(gifUrl){
         console.log(ok);
         recordVideo.classList.add("hide");
         stream.stop();
-
-        gifId++;
-        let gifs = new sessionGifs(gifId, "", gifUrl);
-        savedGifs.push(gifs);
 
         gifOverview.classList.remove("hide");
         let gifOverviewImage = document.getElementById("overview-gif");
@@ -217,9 +210,13 @@ const key = `bH9JKYtKhbwDfbW2bL9icFJreuoFFMwb`;
 
 let gifPOST = document.getElementById("uploadGif");
 
-gifPOST.addEventListener("click", sendGifAsBlob);
+gifPOST.addEventListener("click", sendGifAsForm);
 
-async function sendGifAsBlob(file) {
+let gifLoads = document.querySelector(".gif-loading");
+let gifLoadsMessage = document.getElementById("upload-message");
+
+async function sendGifAsForm() {
+    gifLoads.classList.remove("hide");
 
     let headers = new Headers();
 
@@ -227,19 +224,33 @@ async function sendGifAsBlob(file) {
         //headers: headers,
         method: "POST",
         //mode: "no-cors", // deals with redirecting to external resources coming from a core page/resource. no-cors: deactives that for communicating just with the local page.
-        body: file
+        body: newForm
     }
     try {
         let data = await fetch(`https://upload.giphy.com/v1/gifs?api_key=${key}`, options);
         let response = await data.json();
-        console.log(response);
-        if (response.ok) {
-            console.log("File uploaded succesfully");
+        
+        if (data.ok) {
+            gifLoads.classList.add("hide");
+            setTimeout(() => {
+                gifLoadsMessage.innerText = "";
+            }, 3000);
+            gifLoadsMessage.innerText = "Upload Exitoso!";
+            console.log(response.data);
+            /*
+            let gifs = new sessionGifs(gifId, "", gifUrl);
+        savedGifs.push(gifs);
+            */
         } else{
             throw new Error("NO");
         }
     } catch (error) {
         console.log(error);
+        gifLoads.classList.add("hide");
+        setTimeout(() => {
+            gifLoadsMessage.innerText = "";
+        }, 3000);
+        gifLoadsMessage.innerText = "Upload Fallido";
     }
 }
 
