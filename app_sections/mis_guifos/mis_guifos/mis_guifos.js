@@ -85,6 +85,7 @@ btnCloseCapture.addEventListener("click", () =>{
 
     boxTitle.innerText = "Un Chequeo Antes de Empezar";
     btnCapture.innerText = "Capturar";
+
 });
 
 // ========== Open the camera and display source to the DOM ============
@@ -216,7 +217,8 @@ let gifLoads = document.querySelector(".gif-loading");
 let gifLoadsMessage = document.getElementById("upload-message");
 
 async function sendGifAsForm() {
-    gifLoads.classList.remove("hide");
+
+    gifLoadsMessage.innerText = "Pensando...";
 
     let headers = new Headers();
 
@@ -231,26 +233,52 @@ async function sendGifAsForm() {
         let response = await data.json();
         
         if (data.ok) {
-            gifLoads.classList.add("hide");
-            setTimeout(() => {
-                gifLoadsMessage.innerText = "";
-            }, 3000);
-            gifLoadsMessage.innerText = "Upload Exitoso!";
-
+            console.log(response);
+            
             let gifId = response.data.id;
             let gifs = new sessionGifs(gifId, "", "");
             savedGifs.push(gifs);
-            
+            loadingScreen();
         } else{
             throw new Error("NO");
         }
     } catch (error) {
         console.log(error);
-        gifLoads.classList.add("hide");
-        setTimeout(() => {
-            gifLoadsMessage.innerText = "";
-        }, 3000);
-        gifLoadsMessage.innerText = "Upload Fallido";
     }
 }
 
+
+/**
+ * =============== Repeat Capture (Click in button "Repetir Captura") ============
+ */
+
+let btnRepeatCapture = document.getElementById("repeat-capture");
+
+btnRepeatCapture.addEventListener("click", () =>{
+    gifOverview.classList.add("hide");
+    gifRecordBox.classList.remove("hide");
+
+    btnCapture.classList.remove("hide");
+    btnStop.classList.add("hide");
+    camera.classList.replace("btn-lens", "btn-camera");
+    timerDiv.classList.add("hide");
+
+    boxTitle.innerText = "Un Chequeo Antes de Empezar";
+    btnCapture.innerText = "Capturar";
+
+    gifLoadsMessage.innerText = "";
+
+    getMedia(constraints);
+});
+
+function loadingScreen() {
+    console.log("Loading screen");
+    /*
+    
+    gifLoads.classList.remove("hide");
+    gifLoads.classList.add("hide");
+    setTimeout(() => {
+        gifLoadsMessage.innerText = "";
+    }, 3000);
+    gifLoadsMessage.innerText = "Upload Exitoso!";*/
+}
