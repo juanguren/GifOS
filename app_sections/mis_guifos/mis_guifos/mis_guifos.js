@@ -218,9 +218,7 @@ let gifLoadsMessage = document.getElementById("upload-message");
 
 async function sendGifAsForm() {
 
-    gifLoadsMessage.innerText = "Pensando...";
-
-    let headers = new Headers();
+    gifOverview.classList.add("hide");
 
     const options = {
         //headers: headers,
