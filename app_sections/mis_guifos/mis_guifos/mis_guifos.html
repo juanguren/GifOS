@@ -82,11 +82,10 @@
             <div class="overview-content">
                 <img id="overview-gif" alt="Recorded GIF - In progress">
                 <div class="overview-controls">
-                    <div class="gif-duration">
+                    <div class="gif-duration hide">
                         <label id="minutes1">00</label>:<label id="seconds1">00</label>
                     </div>
-                    <div class="gif-loading hide"></div>
-                        <h3 id="upload-message"></h3>
+                        <h4 id="upload-message"></h4>
                         <div class="gif-play hide">
                             <button id="btn-play"><img src="../../../assets/forward.svg" alt=""></button>
                             <div class="gif-progress">
@@ -100,6 +99,27 @@
                         <button id="repeat-capture">Repetir Captura</button>
                         <button id="uploadGif">Subir Guifo</button>
                     </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION GIF Upload -->
+        <section class="uploading-container">
+            <div class="uploading-title">
+                <h5>Subiendo Guifo</h5>
+            </div>
+            <div class="uploading-background">
+                <div class="uploading-content">
+                    <div class="part1">
+                        <img src="../../../assets/globe_img.png" alt="">
+                        <h4>Estamos subiendo tu guifo...</h4>
+                    </div>
+                    <div class="part2">
+                        <div class="gif-loading"></div>
+                        <h5>Tiempo restante: <span>38 años</span> algunos minutos</h5>
+                    </div>
+                </div>
+                <div class="uploading-btn">
+                    <button id="upload-cancel"> Cancelar</button>
                 </div>
             </div>
         </section>
