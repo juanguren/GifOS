@@ -215,10 +215,13 @@ gifPOST.addEventListener("click", sendGifAsForm);
 
 let gifLoads = document.querySelector(".gif-loading");
 let gifLoadsMessage = document.getElementById("upload-message");
+let uploadingGif = document.querySelector(".uploading-container");
+let gifId;
 
 async function sendGifAsForm() {
 
     gifOverview.classList.add("hide");
+    uploadingGif.classList.remove("hide");
 
     const options = {
         //headers: headers,
@@ -232,11 +235,9 @@ async function sendGifAsForm() {
         
         if (data.ok) {
             console.log(response);
-            
-            let gifId = response.data.id;
-            let gifs = new sessionGifs(gifId, "", "");
-            savedGifs.push(gifs);
-            loadingScreen();
+            gifId = response.data.id;
+
+            uploadSuccesfulScreen(gifId);
         } else{
             throw new Error("NO");
         }
@@ -244,7 +245,6 @@ async function sendGifAsForm() {
         console.log(error);
     }
 }
-
 
 /**
  * =============== Repeat Capture (Click in button "Repetir Captura") ============
@@ -269,14 +269,45 @@ btnRepeatCapture.addEventListener("click", () =>{
     getMedia(constraints);
 });
 
-function loadingScreen() {
-    console.log("Loading screen");
-    /*
-    
-    gifLoads.classList.remove("hide");
-    gifLoads.classList.add("hide");
-    setTimeout(() => {
-        gifLoadsMessage.innerText = "";
-    }, 3000);
-    gifLoadsMessage.innerText = "Upload Exitoso!";*/
+function uploadSuccesfulScreen(gifId) {
+    console.log("Loading screen " + gifId);
+    uploadingGif.classList.add("hide");
+
+    fetch(`https://api.giphy.com/v1/gifs?api_key=${key}&ids=${gifId}`)
+        .then(data => data.json())
+        .then((res) =>{
+            if (res.meta.status == 200) {
+                let gif = res.data[0];
+                showFinalResult(gif);
+            }else{
+                console.log("Data wasn´t fetched correctly");
+            }
+        });
 }
+
+let finalGif = document.getElementById("resulting-gif");
+
+function showFinalResult(data) {
+    console.log(data);
+    const gifUrl = data.images.fixed_height_downsampled.url;
+    console.log(gifUrl);
+    // TODO
+    let gifs = new sessionGifs(gifId, "", gifUrl);
+    savedGifs.push(gifs);
+
+    finalGif.src = gifUrl;
+    console.log(finalGif);
+
+    copyGifUrl(gifUrl);
+
+}
+
+let copyGifBtn = document.getElementById("gif-copy");
+let downloadGifBtn = document.getElementById("gif-download");
+
+copyGifBtn.addEventListener("click", copyGifUrl);
+
+function copyGifUrl(url){
+    console.log(url);
+}
+
