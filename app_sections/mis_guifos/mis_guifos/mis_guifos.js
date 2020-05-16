@@ -286,6 +286,7 @@ function uploadSuccesfulScreen(gifId) {
 }
 
 let finalGif = document.getElementById("resulting-gif");
+let stringUrlGif = document.getElementById("gif-url-copy");
 
 function showFinalResult(data) {
     console.log(data);
@@ -298,6 +299,7 @@ function showFinalResult(data) {
     finalGif.src = gifUrl;
     console.log(finalGif);
 
+    stringUrlGif.innerText = gifUrl;
     copyGifUrl(gifUrl);
 
 }
@@ -307,7 +309,7 @@ let downloadGifBtn = document.getElementById("gif-download");
 
 copyGifBtn.addEventListener("click", copyGifUrl);
 
-function copyGifUrl(url){
-    console.log(url);
+function copyGifUrl(){
+    window.navigator.clipboard.writeText(stringUrlGif.innerHTML);
 }
 
