@@ -427,6 +427,95 @@
     padding: .5rem 30px;
 }
 
+/*
+    GIF Final Results - Sixth Screen
+*/
+
+.results-container{
+    background: #E6E6E6;
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+    margin: auto;
+    margin-top: 4em;
+    width: 70%; /* 684px; */
+}
+
+.results-title{
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+}
+
+.results-title h4{
+    font-family: var(--fontBold);
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.results-content{
+    padding: 2.5em;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.results-instructions{
+    display: grid;
+    grid-auto-flow: row;
+    gap: 10px;
+}
+
+.results-instructions button{
+    height: fit-content;
+    padding: 11px 30px;
+    background: #FFF4FD;
+    border: 1px solid #110038;
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+    cursor: pointer;
+}
+
+@media(min-width:1200px){
+}
+
+@media(max-width:1199px) and (min-width: 992px){
+}
+
+@media(max-width:991px) and (min-width: 768px){
+    
+    .results-content{
+        grid-template-areas:
+        "image"
+        "instructions";
+        justify-content: center;
+    }
+
+    #resulting-gif{
+        grid-area: image;
+        width: 100%;
+    }
+
+    .results-instructions{
+        grid-area: instructions;
+        margin-top: 2em;
+    }
+}
+
+@media(max-width:767px){
+
+    .results-content{
+        grid-template-areas:
+        "image"
+        "instructions";
+        justify-content: center;
+    }
+
+    #resulting-gif{
+        grid-area: image;
+        width: 100%;
+    }
+
+    .results-instructions{
+        grid-area: instructions;
+        margin-top: 2em;
+    }
+}
 
 /* Appendable */
 .hide{
