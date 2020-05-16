@@ -285,10 +285,12 @@ function uploadSuccesfulScreen(gifId) {
         });
 }
 
+let resultsWindow = document.querySelector(".results-container");
 let finalGif = document.getElementById("resulting-gif");
 let stringUrlGif = document.getElementById("gif-url-copy");
 
 function showFinalResult(data) {
+    resultsWindow.classList.remove("hide");
     console.log(data);
     const gifUrl = data.images.fixed_height_downsampled.url;
     console.log(gifUrl);
@@ -300,16 +302,27 @@ function showFinalResult(data) {
     console.log(finalGif);
 
     stringUrlGif.innerText = gifUrl;
-    copyGifUrl(gifUrl);
 
 }
 
 let copyGifBtn = document.getElementById("gif-copy");
+let copySuccessMsg = document.getElementById("copy-success");
 let downloadGifBtn = document.getElementById("gif-download");
 
 copyGifBtn.addEventListener("click", copyGifUrl);
 
 function copyGifUrl(){
-    window.navigator.clipboard.writeText(stringUrlGif.innerHTML);
+    copySuccessMsg.style.color = "crimson";
+    window.navigator.clipboard.writeText(stringUrlGif.innerHTML) ? copySuccessMsg.innerText = "Copiado!" : console.log("NO");
+    
+    setTimeout(() => {
+       copySuccessMsg.innerText = ""; 
+    }, 2000);
 }
+
+let closeResultsWindow = document.getElementById("results-close");
+
+closeResultsWindow.addEventListener("click", () =>{
+    resultsWindow.classList.add("hide");
+})
 

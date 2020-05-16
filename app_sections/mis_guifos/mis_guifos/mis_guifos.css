@@ -441,6 +441,8 @@
 
 .results-title{
     background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%);
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .results-title h4{
@@ -448,6 +450,12 @@
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
+}
+
+.results-title img{
+    justify-self: end;
+    margin-right: 3px;
+    cursor: pointer;
 }
 
 .results-content{
@@ -478,7 +486,7 @@
 }
 
 @media(max-width:991px) and (min-width: 768px){
-    
+
     .results-content{
         grid-template-areas:
         "image"
