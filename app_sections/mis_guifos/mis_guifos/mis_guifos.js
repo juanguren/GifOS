@@ -348,7 +348,7 @@ let closeResultsWindow = document.getElementById("results-close");
 closeResultsWindow.addEventListener("click", () =>{
     resultsWindow.classList.add("hide");
 })
-
+// TODO: Showcase of old GIFs must happen automatically
 function appendGifs() {
     let myGifsSection = document.querySelector(".myGifs-content");
     let alt = 1;
