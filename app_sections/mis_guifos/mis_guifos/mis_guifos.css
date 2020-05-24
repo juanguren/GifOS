@@ -48,6 +48,14 @@
 
 /* ====== Global Styling (Module for creating GIFS) ======= */
 
+.logo-grid{ /* Appendable class for changing nav bar based on users clicking on button "Create GIFS" */
+    display: flex;
+}
+
+.logo-grid img{
+    margin-right: 1em;
+    cursor: pointer;
+}
 
 .myGifs{
     margin-top: 3rem;
