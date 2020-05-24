@@ -417,6 +417,11 @@ function copyGifUrl(){
     }, 2000);
 }
 
+downloadGifBtn.addEventListener("click", () =>{
+    downloadGifBtn.target = "_blank";
+    downloadGifBtn.href = stringUrlGif.innerText;
+})
+
 function saveGifToLocalStorage() {
     let existingGif = JSON.parse(localStorage.getItem("My_Gifs"));
     if (existingGif) {

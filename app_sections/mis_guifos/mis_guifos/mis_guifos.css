@@ -489,13 +489,15 @@
     gap: 10px;
 }
 
-.results-instructions button{
+.results-instructions button, #gif-download{
     height: fit-content;
     padding: 11px 30px;
     background: #FFF4FD;
     border: 1px solid #110038;
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
     cursor: pointer;
+    text-align: center;
+    color: var(--fontColor);
 }
 
 @media(min-width:1200px){
