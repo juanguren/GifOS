@@ -303,7 +303,6 @@ async function getGifsRandom(url) { // Devolver promesa con .then fuera de la fu
                 <img src="${gifUrl}" alt="${gifTitle}" class="gif-image"> 
                 <button class="btnSuggestDay btnSuggest">Ver mas</button>`;
         div.innerHTML = divContent;
-        console.log(div);
         let gifContainer = document.querySelector(".gif-suggestion");
         gifContainer.appendChild(div);
 
