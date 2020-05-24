@@ -321,7 +321,7 @@ for(let i = 0; i<= 3; i++){
  *============= Search Coincidendes=================
  */
 
-let textAI = document.querySelectorAll("#searchPredict");
+let textAI = document.querySelectorAll(".searchPredict");
 
 searchBar.addEventListener("keyup", gifSearch);
 
@@ -330,14 +330,14 @@ async function gifSearch(e) {
     let data = await fetch(`https://api.giphy.com/v1/gifs/search/tags?api_key=${key}&q=${query}`);
     let res = await data.json();
     if (data.ok) {
-    }
-    if (e.target.value == "" || e.target.value == " ") {
-        console.log("Don´t delete that much!");
-    } else{
-        let suggestedValue = res.data;
-        for(let i = 0; i<= 2; i++){
-            textAI[i].innerText = suggestedValue[i].name;
-        } 
+        if (e.target.value == "" || e.target.value == " ") {
+            console.log("Don´t delete that much!");
+        } else{
+            let suggestedValue = res.data;
+            for(let i = 0; i<= 2; i++){
+                textAI[i].innerText = suggestedValue[i].name;
+            } 
+        }
     }
 }
 
