@@ -445,7 +445,7 @@ setTimeout(() => {
         }
     })
 })
-}, 2500);
+}, 2600);
 
 // THIS FUNCTION CREATES AND APPENDS 1 NEW GIF EVERY TIME 1 IS DELETED.
 
@@ -549,7 +549,7 @@ setTimeout(() => {
             })
         })
     });
-}, 2500);
+}, 2600);
 
 // SECTION GIF TRENDS
 
