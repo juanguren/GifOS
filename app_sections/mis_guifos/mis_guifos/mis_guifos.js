@@ -306,17 +306,12 @@ function showFinalResult(data) {
     const gifUrl = data.images.fixed_height_downsampled.url;
     // TODO
     let gifs = new sessionGifs(gifId, "", gifUrl);
-    savedGifs.push(gifs);
-    new Promise((res, rej) =>{
-        savedGifs ? res("Array OK") : rej("Error saving");
-    }).then((ok) =>{
-        console.log(ok);
-        saveGifToLocalStorage();
-    }).then(appendGifs())
-      .catch(rej => console.log(rej));
+    savedGifs.push(gifs);   
+        
+    saveGifToLocalStorage();    
+    appendGifs();
 
     finalGif.src = gifUrl;
-
     stringUrlGif.innerText = gifUrl;
 }
 
@@ -335,12 +330,6 @@ function copyGifUrl(){
     }, 2000);
 }
 
-let closeResultsWindow = document.getElementById("results-close");
-
-closeResultsWindow.addEventListener("click", () =>{
-    resultsWindow.classList.add("hide");
-})
-
 function saveGifToLocalStorage() {
     let existingGif = JSON.parse(localStorage.getItem("My_Gifs"));
     if (existingGif) {
@@ -354,7 +343,21 @@ function saveGifToLocalStorage() {
     }
 }
 
+let closeResultsWindow = document.getElementById("results-close");
+
+closeResultsWindow.addEventListener("click", () =>{
+    resultsWindow.classList.add("hide");
+})
+
 function appendGifs() {
-    console.log(savedGifs);
+    let myGifsSection = document.querySelector(".myGifs-content");
+    let alt = 1;
+    savedGifs.map((elements) =>{
+        let img = document.createElement("img");
+        img.src = elements.src;
+        img.alt = `Mi GIF #${alt++}`;  
+        myGifsSection.appendChild(img);
+    });
+    console.log(myGifsSection);
 }
 
