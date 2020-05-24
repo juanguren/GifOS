@@ -407,23 +407,27 @@ function createGifsOnDemand(data) {
         trendsSection.style.display = "none";
         let resultNodeList = [];
         searchDiv.innerHTML = ""; // Cleans inner code to prevent multiple results appending one after the other
-        
-        for(i in data){
-            let resultsUrl = data[i].images.fixed_height_downsampled.url
-            let img = document.createElement("img");
-            img.src = resultsUrl;
-            img.alt = data[i].title;
-            img.classList.add("searchGif");
-            searchDiv.appendChild(img);
-            let section1 = document.querySelector(".searchContainer");
-            section1.classList.replace("searchInactive", "searchActive");
-            resultNodeList = document.querySelectorAll(".searchGif");
+        if (data) {
+            for(i in data){
+                let resultsUrl = data[i].images.fixed_height_downsampled.url
+                let img = document.createElement("img");
+                img.src = resultsUrl;
+                img.alt = data[i].title;
+                img.classList.add("searchGif");
+                searchDiv.appendChild(img);
+                let section1 = document.querySelector(".searchContainer");
+                section1.classList.replace("searchInactive", "searchActive");
+                resultNodeList = document.querySelectorAll(".searchGif");
+            }
+            // The following code adds various spans to the selected img´s:
+            let resultArray = Array.from(resultNodeList);
+            resultArray[4].classList.add("gif-span1");
+            resultArray[9].classList.add("gif-span2");
+            resultArray[14].classList.add("gif-span3");
+        } else{
+            console.log("Data not found");
         }
-        // The following code adds various spans to the selected img´s:
-        let resultArray = Array.from(resultNodeList);
-        resultArray[4].classList.add("gif-span1");
-        resultArray[9].classList.add("gif-span2");
-        resultArray[14].classList.add("gif-span3");
+        
 }
 
 // ========================== Delete GIF ===========================================
@@ -538,13 +542,16 @@ setTimeout(() => {
             let data = fetch(`https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${searchQuery}&limit=16&offset=0&rating=G&lang=es`)
                 .then(res => res.json())
                 .then((data) =>{
-                    location.href = "#search-scroll";
-
                     searchResultTag.innerText = searchQuery.toUpperCase();
                     searchResultTag.style.color = "crimson";
                     let query = data.data;
-                    createGifsOnDemand(query);
-                    saveQuery("Search History", searchQuery);
+                    if (query.length == 0) {
+                        console.log("hmm data is empty");
+                    } else{
+                        location.href = "#search-scroll";
+                        createGifsOnDemand(query);
+                        saveQuery("Search History", searchQuery);
+                    }
             })
         })
     });
