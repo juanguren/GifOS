@@ -303,13 +303,13 @@ let stringUrlGif = document.getElementById("gif-url-copy");
 function showFinalResult(data) {
     resultsWindow.classList.remove("hide");
 
-    const gifUrl = data.images.fixed_height_downsampled.url;
+    const gifUrl = data.images.downsized_medium.url;
     // TODO
     let gifs = new sessionGifs(gifId, "", gifUrl);
     savedGifs.push(gifs);   
         
     saveGifToLocalStorage();    
-    appendGifs();
+    appendNewGifs(gifUrl);
 
     finalGif.src = gifUrl;
     stringUrlGif.innerText = gifUrl;
@@ -349,15 +349,33 @@ closeResultsWindow.addEventListener("click", () =>{
     resultsWindow.classList.add("hide");
 })
 // TODO: Showcase of old GIFs must happen automatically
-function appendGifs() {
-    let myGifsSection = document.querySelector(".myGifs-content");
-    let alt = 1;
-    savedGifs.map((elements) =>{
-        let img = document.createElement("img");
-        img.src = elements.src;
-        img.alt = `Mi GIF #${alt++}`;  
-        myGifsSection.appendChild(img);
-    });
-    console.log(myGifsSection);
+let myGifsSection = document.querySelector(".myGifs-content");
+let alt = 1;
+
+function appendNewGifs(gifUrl) {
+    let img = document.createElement("img");
+    img.src = gifUrl;
+    img.classList.add("gif-size");
+    myGifsSection.appendChild(img);
 }
+
+function appendSavedGifs() {
+    let obtainGifs = JSON.parse(localStorage.getItem("My_Gifs"));
+    try {
+        if (obtainGifs == null) {
+            throw new Error("Waiting for gifs...");
+        }
+        obtainGifs.map((elements) =>{
+            let img = document.createElement("img");
+            img.src = elements.src;
+            img.alt = `Mi GIF #${alt++}`; 
+            img.classList.add("gif-size"); 
+            myGifsSection.appendChild(img);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+appendSavedGifs();
 
