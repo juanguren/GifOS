@@ -307,13 +307,17 @@ function showFinalResult(data) {
     // TODO
     let gifs = new sessionGifs(gifId, "", gifUrl);
     savedGifs.push(gifs);
-    saveGifToLocalStorage();
+    new Promise((res, rej) =>{
+        savedGifs ? res("Array OK") : rej("Error saving");
+    }).then((ok) =>{
+        console.log(ok);
+        saveGifToLocalStorage();
+    }).then(appendGifs())
+      .catch(rej => console.log(rej));
 
     finalGif.src = gifUrl;
 
     stringUrlGif.innerText = gifUrl;
-
-    appengGifs(gifUrl);
 }
 
 let copyGifBtn = document.getElementById("gif-copy");
@@ -340,15 +344,17 @@ closeResultsWindow.addEventListener("click", () =>{
 function saveGifToLocalStorage() {
     let existingGif = JSON.parse(localStorage.getItem("My_Gifs"));
     if (existingGif) {
-        existingGif.forEach(gif => savedGifs.push(gif));
+        existingGif.forEach((gif) =>{
+            let saved = new sessionGifs(gif.id, "", gif.src);
+            savedGifs.push(saved);
+        })
         localStorage.setItem("My_Gifs", JSON.stringify(savedGifs));
     } else{
         localStorage.setItem("My_Gifs", JSON.stringify(savedGifs));
     }
 }
 
-function appengGifs(gif) {
-    console.log(gif);
-    
+function appendGifs() {
+    console.log(savedGifs);
 }
 
