@@ -35,17 +35,28 @@ function clickToggle(e) {
 // ======================= Hide "create GIF box" based on "Mis gifos" click ==========================
 
 let gifBox = document.querySelector(".create-container");
+let menuOptions = document.querySelector(".gif-options");
+let logoContainer = document.getElementById("logo-container");
+let logoArrow = document.getElementById("logo-arrow");
+
+let misGifosClick = localStorage.getItem("Mis_Gifos_Was_Clicked");
 
 let hideGifBox = () =>{
-    let misGifosClick = localStorage.getItem("Mis_Gifos_Was_Clicked");
     if (misGifosClick === "true") {
         gifBox.classList.add("hide");
     } else if (misGifosClick === "false") {
         gifBox.classList.remove("hide");
+        menuOptions.classList.add("hide");
+        logoContainer.classList.add("logo-grid");
+        logoArrow.classList.remove("hide");
     }
 }
 
 hideGifBox();
+
+logoArrow.addEventListener("click", () =>{
+    location.href = "../../../index.html";
+})
 
 /* 
 * ======= Hide "create GIF box" based on the user´s click on "Comenzar"
@@ -291,18 +302,18 @@ let stringUrlGif = document.getElementById("gif-url-copy");
 
 function showFinalResult(data) {
     resultsWindow.classList.remove("hide");
-    console.log(data);
+
     const gifUrl = data.images.fixed_height_downsampled.url;
-    console.log(gifUrl);
     // TODO
     let gifs = new sessionGifs(gifId, "", gifUrl);
     savedGifs.push(gifs);
+    saveGifToLocalStorage();
 
     finalGif.src = gifUrl;
-    console.log(finalGif);
 
     stringUrlGif.innerText = gifUrl;
 
+    appengGifs(gifUrl);
 }
 
 let copyGifBtn = document.getElementById("gif-copy");
@@ -325,4 +336,19 @@ let closeResultsWindow = document.getElementById("results-close");
 closeResultsWindow.addEventListener("click", () =>{
     resultsWindow.classList.add("hide");
 })
+
+function saveGifToLocalStorage() {
+    let existingGif = JSON.parse(localStorage.getItem("My_Gifs"));
+    if (existingGif) {
+        existingGif.forEach(gif => savedGifs.push(gif));
+        localStorage.setItem("My_Gifs", JSON.stringify(savedGifs));
+    } else{
+        localStorage.setItem("My_Gifs", JSON.stringify(savedGifs));
+    }
+}
+
+function appengGifs(gif) {
+    console.log(gif);
+    
+}
 
