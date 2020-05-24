@@ -46,6 +46,10 @@
     margin-top: 1rem;
 }
 
+#btn-create-gif{
+    cursor: pointer;
+}
+
 /* ====== Global Styling (Module for creating GIFS) ======= */
 
 .logo-grid{ /* Appendable class for changing nav bar based on users clicking on button "Create GIFS" */

@@ -124,6 +124,10 @@ body{
     margin: 0 .5em;
 }
 
+#btn-create-gif{
+    cursor: pointer;
+}
+
 .gif-options a{
     text-align: end;
 }
