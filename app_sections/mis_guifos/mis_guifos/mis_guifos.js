@@ -196,6 +196,7 @@ let camera = document.querySelector(".btn-camera");
 let stream = null;
 let savedGifs = [];
 let newForm = new FormData(); // Form capturing the generated Blob after stopping the video recording
+let recording = true;
 
 class sessionGifs{
     constructor(id, lengthx, src){
@@ -213,7 +214,6 @@ const constraints = {
 }
 
 async function getMedia(constraints){
-    let recording = false;
     try {
         stream = await navigator.mediaDevices.getUserMedia(constraints);
         /* use the stream */
@@ -227,6 +227,7 @@ async function getMedia(constraints){
         });
         btnCapture.addEventListener("click", async (e) =>{
             recorder.record(); // Starts recording
+            startCount(); // Timer starts
             await new Promise((res, rej) => {
                 if (recorder) {
                     res("OK");
@@ -243,7 +244,8 @@ async function getMedia(constraints){
             }).catch(rej => console.log(rej));
         });
         btnStop.addEventListener("click", () =>{
-
+            recording = false;
+            
             recorder.stop(function(blob) {
             if (blob && blob.size > 0) { // size> 0 handles the error of multiple clicks at "Listo" button
                 let gifUrl = URL.createObjectURL(blob);
@@ -265,6 +267,32 @@ async function getMedia(constraints){
     }
 }
 
+// ==================== Timer starts ====================
+
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+
+startCount = () => { // I copied this code. Al possible credit goes to "Chandu" in stack overflow
+    
+    setInterval(setTime, 1000);
+
+    function setTime() {
+        ++totalSeconds;
+        secondsLabel.innerHTML = pad(totalSeconds % 60);
+        minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    }
+
+    function pad(val) {
+        let valString = val + "";
+
+        if (valString.length < 2) {
+            return "0" + valString;
+        } else {
+            return valString;
+        }
+    }
+} 
 
 //============= Change to the window that captures the users GIF ================
 
