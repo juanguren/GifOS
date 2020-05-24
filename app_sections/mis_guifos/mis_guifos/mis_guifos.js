@@ -11,6 +11,14 @@ pageVisits();
 
 // SECTION TOOL BAR EVENTS
 
+// "Create GIFs button click"
+
+let createGifBtn = document.getElementById("btn-create-gif");
+
+createGifBtn.addEventListener("click", () =>{
+    gifBox.classList.remove("hide");
+})
+
 // Theme Toggle
 let btnThemes = document.querySelector("#btn-choose-theme");
 let themes = document.querySelector("#theme-dropdown");
