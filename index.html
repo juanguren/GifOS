@@ -26,8 +26,8 @@
                        <i class="fa fa-caret-down"></i>
                     </button>
                  <div id="theme-dropdown" class="inactive">
-                    <button class="theme-day theme-active" href="#">Sailor Day</button>
-                    <button class="theme-night theme-inactive" href="#">Sailor Night</button>
+                    <button class="theme-day theme-active">Sailor Day</button>
+                    <button class="theme-night theme-inactive">Sailor Night</button>
                   </div>
                 </div>
                 <a id="myGifs" href="app_sections/mis_guifos/mis_guifos/mis_guifos.html"><span>M</span>is Gifos</a>
@@ -38,17 +38,17 @@
             <div id="top-header" class="topHeader-day">
                 <h4>Buscar</h4>
             </div>
-            <form class="search-box" action="">
-                <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…">
+            <form class="search-box">
+                <input type="text" id="search-input" placeholder="Busca gifs, hashtags, temas, busca lo que quieras…" autocomplete="off">
                 <button type="submit" class="btn btn-inactive" id="button-search">
                     <img id="lens-img" src="assets/lupa_inactive.svg" alt="Icono de lupa"> Buscar</button>
                 </form>
         </section>
         <!-- Search toggle (start) -->
         <aside class="search-toggle">
-            <button id="searchPredict"></button>
-            <button id="searchPredict"></button>
-            <button id="searchPredict"></button>
+            <button class="searchPredict"></button>
+            <button class="searchPredict"></button>
+            <button class="searchPredict"></button>
         </aside>
         <!-- Search toggle (ends) -->
         <div class="search-history"></div>
@@ -79,6 +79,6 @@
             </div>
         </section>
     </div>
-<script src="script/main.js"></script>
+    <script src="script/main.js"></script>
 </body>
 </html>
