@@ -68,15 +68,22 @@
     padding: .5rem;
 }
 
+/* ====================== SECTION VIEW MY GIFS ===================== */
+
 .myGifs-content{
     margin-top: 1.5rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
 .gif-span1{ /* TODO Appendable class */
     grid-column-start: span 2;
+}
+
+.gif-size{ /* Appendable class */
+    width: 100%;
+    height: 200px;
 }
 
 /* BOX - CREATE GIF */
