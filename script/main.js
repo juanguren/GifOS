@@ -224,7 +224,7 @@ function saveQuery(name, value) {
     }
 }
 
-// Aappends those queries ☝️ to the DOM (Search history)
+// Appends those queries ☝️ to the DOM (Search history)
 let savedHistory;
 
 function postHistory() {
@@ -236,7 +236,7 @@ function postHistory() {
         alertMessage.innerText = "Ouch! This app only saves 9 search results";
         alertMessage.style.color = "crimson";            
         setTimeout(() => {
-            alert.style.display = "none";         
+            alertMessage.style.display = "none";         
         }, 3000);
     } else{
         let p = document.createElement("p");
