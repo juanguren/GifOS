@@ -17,6 +17,10 @@ let createGifBtn = document.getElementById("btn-create-gif");
 
 createGifBtn.addEventListener("click", () =>{
     gifBox.classList.remove("hide");
+    
+    menuOptions.classList.add("hide");
+    logoContainer.classList.add("logo-grid");
+    logoArrow.classList.remove("hide");
 })
 
 // Theme Toggle
@@ -115,7 +119,7 @@ function dayChange() {
     themeChange = false;
 }
 
-// ======================= Hide "create GIF box" based on "Mis gifos" click ==========================
+// ======================= Hide "create GIF box" based on "Mis gifs" click ==========================
 
 let gifBox = document.querySelector(".create-container");
 let menuOptions = document.querySelector(".gif-options");
