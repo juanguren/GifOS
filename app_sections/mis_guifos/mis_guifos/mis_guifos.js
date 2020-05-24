@@ -29,8 +29,83 @@ function clickToggle(e) {
     }
 }
 
-// ======================= Theme Selection ==========================
+// ======================= SECTION Theme Selection ==========================
 
+let btnsSuggest = document.querySelectorAll(".btnSuggest"); // Nodelist of buttons overlapping suggested gifs
+let topBar = document.getElementById("top-bar"); // Bar at the very top of the application
+let suggestedGifs = document.querySelectorAll(".gif");
+let themeBtns = document.querySelectorAll(".btnTheme");
+
+// This function changes various elements from the DOM, the ones WITHOUT ANY ASSOCIATED EVENT. Using classes from the night stylesheet.
+let buttonsNight = () =>{
+    let btnCreate = document.getElementById("btn-create-gif");
+
+    btnThemes.classList.add("btn-night");
+    btnCreate.classList.add("btn-night");
+    // Selecting the nodelist buttons
+    themeBtns.forEach((button) =>{
+        button.classList.replace("btnSuggestDay", "btnSuggestNight");
+    });
+
+    topBar.classList.replace("upperBar-day", "upperBar-night");
+    // Selecting the suggested gifs header
+    suggestedGifs.forEach((element) =>{
+        element.classList.replace("gifDay", "gifNight");
+    });
+}
+
+// Instantiating DOM elements
+let themeDay = document.querySelector(".theme-day");
+let themeNight = document.querySelector(".theme-night");
+let logo = document.getElementById("logoGIF");
+let misGifos = document.querySelector(".gif-options").lastElementChild;
+let themeChange = false;
+
+// Creating element for appending the new stylesheet
+let newStyle = document.createElement("link");
+
+themeNight.addEventListener("click", nightChange);
+
+function nightChange() {
+
+    themeNight.classList.replace("theme-inactive", "theme-active");
+    if (themeDay.classList.contains("theme-active")) {
+        themeDay.classList.replace("theme-active", "theme-inactive");
+    }
+    // Changing stylesheet to night
+    newStyle.rel = "stylesheet";
+    newStyle.href = "../../../modular/dark-mode/style/style.css";
+    document.body.appendChild(newStyle);
+    themeNight.classList.add("btnTheme-night"); // Class found in the night stylesheet
+
+    misGifos.style.color = "white";
+    logo.setAttribute("src", "../../../assets/gifOF_logo_dark.png");
+    themeChange = true;
+    buttonsNight();
+}
+
+themeDay.addEventListener("click", dayChange);
+
+function dayChange() {
+    themeDay.classList.replace("theme-inactive", "theme-active");
+    themeNight.classList.replace("theme-active", "theme-inactive");
+    logo.src = "../../../assets/gifOF_logo.png";
+    misGifos.style.color = "#110038";
+    // Removes night stylesheet from body
+    document.body.removeChild(newStyle);
+
+    // Selecting the nodelist buttons
+    themeBtns.forEach((button) =>{
+        button.classList.replace("btnSuggestNight", "btnSuggestDay");
+    });
+
+    topBar.classList.replace("upperBar-night", "upperBar-day");
+    // Selecting the suggested gifs header
+    suggestedGifs.forEach((element) =>{
+        element.classList.replace("gifNight", "gifDay");
+    });
+    themeChange = false;
+}
 
 // ======================= Hide "create GIF box" based on "Mis gifos" click ==========================
 
