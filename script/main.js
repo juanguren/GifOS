@@ -99,7 +99,7 @@ function nightChange() {
     }
     // Changing stylesheet to night
     newStyle.rel = "stylesheet";
-    newStyle.href = "../modular/dark-mode/style/style.css";
+    newStyle.href = "modular/dark-mode/style/style.css";
     document.body.appendChild(newStyle);
     themeNight.classList.add("btnTheme-night"); // Class found in the night stylesheet
 
