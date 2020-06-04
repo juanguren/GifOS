@@ -442,7 +442,6 @@ setTimeout(() => {
             let gifParent = e.target.parentElement;
             appendNewGif(); // NEW GIF ADDED
             gifContainer.removeChild(gifParent);
-            console.log(gifContainer);
         } else{
             console.log("OK!");
         }
