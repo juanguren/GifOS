@@ -12,3 +12,7 @@
     <li><a href="https://developers.giphy.com/branch/master/docs/api/" target="_blank">Giphy´s API</a></li>
     <li>webRTC Library</li>
  </ul>
+ 
+ <h2>Screenshots</h2>
+  <img src = "assets/screenshots/screen_dark.jpg">
+  <img src = "assets/screenshots/screen_light.jpg">
