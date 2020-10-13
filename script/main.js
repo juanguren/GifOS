@@ -1,16 +1,4 @@
 
-/**
- * TODO
- *     1. THEMES
- *          - The class "btn-active" can´t be on in day theme during normal reload
- *          - Create conditionals for each button during the night theme:
- *              ! Active
- *              ! Normal
- *              ! Hover  
- */
-
-
-
  // ============ Number of app visits (Accumulator) ==================
 
 function pageVisits() {
@@ -19,12 +7,11 @@ function pageVisits() {
         getPageCount++;
         localStorage.setItem("load", getPageCount);
     } else{
-    let pageVisitCount = 1;
-    localStorage.setItem("load", pageVisitCount);
+        let pageVisitCount = 1;
+        localStorage.setItem("load", pageVisitCount);
     }
     showPageVisits();
-}
-pageVisits();
+}   pageVisits();
 
 function showPageVisits() {
     let data = document.getElementById("visit-count");
@@ -313,7 +300,6 @@ async function getGifsRandom(url) { // Devolver promesa con .then fuera de la fu
 }
 for(let i = 0; i<= 3; i++){
     getGifsRandom(`https://api.giphy.com/v1/gifs/random?api_key=${key}&limit=4&rating=G`);
-        //.then()
 }
 
 /**
